@@ -8,6 +8,7 @@ public class Ejercicio4 {
 		String llamando2 = Ejercicio2.getMinuscula(" hola me llamo pablo");
 		System.out.println(llamando1);
 		System.out.println(llamando2);
+		System.out.println("Hola");
 	}
 
 }
