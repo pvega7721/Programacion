@@ -1,0 +1,14 @@
+package repasoT1;
+
+public class Ej1 {
+
+	public static final int PI = 3.14;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		
+		
+	}
+
+}

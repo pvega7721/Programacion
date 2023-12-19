@@ -1,0 +1,20 @@
+package repasoT2;
+
+import java.util.Scanner;
+
+public class Ej3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+	
+		do {
+			System.out.println("*** MENÚ ***\n 1. Abrir\n 2. Guardar\n 3. Modificar\n 4. Salir");
+			
+			
+			
+		} while (opción != 4);
+	}
+
+}

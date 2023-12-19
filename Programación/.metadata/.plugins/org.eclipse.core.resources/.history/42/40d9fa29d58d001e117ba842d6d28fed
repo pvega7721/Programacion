@@ -1,0 +1,29 @@
+package repasoT2;
+
+import java.util.Scanner;
+
+public class Ej4 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("¿Cuántas unidades son?");
+		double unidades = sc.nextInt();
+		System.out.println("¿Cuál es el precio por unidad?");
+		double precio = sc.nextInt();
+		double subtotal = precio*unidades;
+		double total;
+		
+		if (unidades<10) {
+			total = subtotal;
+		}
+		else if (unidades>10 && unidades<24) {
+			
+		}
+		
+		
+		
+	}
+
+}

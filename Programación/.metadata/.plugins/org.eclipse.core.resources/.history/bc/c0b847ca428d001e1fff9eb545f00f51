@@ -1,0 +1,24 @@
+package ejercicios_de_repaso;
+
+import java.util.Iterator;
+import java.util.Scanner;
+
+public class Ejercicio10 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("¿Cuántos alumnos hay en clase?"); //pedimos al usuario el numero de alumnos que hay en clase
+		int numAlumnos = sc.nextInt();
+		
+		String[] array = new String[numAlumnos]; //creamos un array con el número de alumnos que nos indique el usuario
+	
+		for (int i = 0; i < array.length; i++) {
+			System.out.println(array[i]);
+		}		
+		
+	}
+
+}

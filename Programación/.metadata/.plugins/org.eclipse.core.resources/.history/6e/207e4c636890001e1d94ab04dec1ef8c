@@ -1,0 +1,12 @@
+package ejercicios_prácticos;
+
+import java.util.Random;
+
+public class Aleatorio {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Random random = new Random();
+	}
+
+}

@@ -1,0 +1,17 @@
+package repasoT2;
+
+public class Ej6 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int suma=0;
+		
+		for (int i = 3; i <=10; i++) {
+			int numero = i*3;
+			suma +=numero;
+			System.out.print(i);
+			
+		}
+	}
+
+}

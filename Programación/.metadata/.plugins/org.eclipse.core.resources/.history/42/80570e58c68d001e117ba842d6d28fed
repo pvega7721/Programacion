@@ -1,0 +1,21 @@
+package repasoT1;
+
+import java.util.Scanner;
+
+public class Ej1 {
+
+	public static final int PI = 3.14;
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Introduce el radio del círculo: ");
+		int radio = sc.nextInt();
+		
+		int c= 2*PI*radio;
+		
+	}
+
+}
