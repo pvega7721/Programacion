@@ -1,13 +1,33 @@
 package ejercicios_Basicos;
 
+import java.util.Random;
+
 public class Ejercicio4 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String llamando1 = Ejercicio1.getMayusculas(" mi nombre es Pablo");
-		String llamando2 = Ejercicio2.getMinuscula(" hola me llamo pablo");
-		System.out.println(llamando1);
-		System.out.println(llamando2);
+		Random random = new Random();
+		
+		int num = random.nextInt(1,3);
+		
+		String resultado = getMayMin(num, "Hola");
+		System.out.println(resultado);
+		
+	}
+
+	public static String getMayMin(int num, String string) {
+		// TODO Auto-generated method stub
+		
+		if(num==1) {
+			string=Ejercicio1.getMayusculas(string);
+			//string=string.trim().toUpperCase();
+			
+		}else{
+			string=Ejercicio2.getMinuscula(string);
+			//string = string.trim().toLowerCase();
+		}
+		
+		return string;
 	}
 
 }
