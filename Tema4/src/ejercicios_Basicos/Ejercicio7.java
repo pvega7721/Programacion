@@ -7,7 +7,7 @@ public class Ejercicio7 {
 		System.out.println(Ejercicio6.restar(5, 3));
 		System.out.println(Ejercicio6.mult(2, 8));
 		System.out.println(Ejercicio6.div(10, 2));
-		
+		System.out.println("Hola");
 	}
 
 }
