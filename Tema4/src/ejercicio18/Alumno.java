@@ -1,6 +1,34 @@
 package ejercicio18;
 
 public class Alumno {
+
+	private String dni; 
+	private String nombre;
+	private int edad;
+	private Double nota;
+	
+	public Alumno(String dni, String nombre, int edad, Double nota) {
+		super();
+		this.dni = dni;
+		this.nombre = nombre;
+		this.edad = edad;
+		this.nota = nota;
+	}
+	
+	public Alumno(String dni) {
+		super();
+		this.dni = dni;
+	}
+
+
+
+
+	public Alumno() {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -24,11 +52,6 @@ public class Alumno {
 	public void setNota(Double nota) {
 		this.nota = nota;
 	}
-
-	private String dni; 
-	private String nombre;
-	private int edad;
-	private Double nota;
 	
 	public String getDni() {
 		return dni;
@@ -36,6 +59,10 @@ public class Alumno {
 	
 	public void setDni(String dniNuevo) {
 		this.dni=dniNuevo;
+	}
+	
+	public void aprobar() {
+		nota = 5.00;
 	}
 	
 }

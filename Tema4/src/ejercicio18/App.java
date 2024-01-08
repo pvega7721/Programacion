@@ -13,21 +13,37 @@ public class App {
 		//alumno.dni="45382950v";
 		//alumno.nombre="Pablo";
 		System.out.println("Introduce tu DNI");
-		alumno.setDni(sc.nextLine());
+		String dni = sc.nextLine();
+		alumno.setDni(dni);
 		
 		System.out.println("Introduce tu edad");
-		alumno.setEdad(sc.nextInt());
+		Integer edad = sc.nextInt();
+		alumno.setEdad(edad);
+		
+		sc.nextLine();
 		
 		System.out.println("Introduce tu nombre");
-		alumno.setNombre(sc.nextLine());
+		String nombre = sc.nextLine();
+		alumno.setNombre(nombre);
 		
-		sc.next();
 		
 		System.out.println("Introduce tu nota");
-		alumno.setNota(sc.nextDouble());
+		Double nota = sc.nextDouble();
+		alumno.setNota(nota);
 		
 		System.out.println("Tu dni es: " + alumno.getDni() + "\nTu edad es: " + alumno.getEdad() + "\nTu nombre es: " + alumno.getNombre() + "\nTu nota es: " + alumno.getNota()) ;
 	
+		sc.close();
+		
+		Alumno alumno2 = new Alumno(dni, nombre, edad, nota);
+		
+		alumno.aprobar();
+		System.out.println("Nueva nota:" + alumno.getNota());
+		
+		Alumno alumno3 = new Alumno(dni);
+		alumno3.setDni("12345678T");
+		System.out.println("Nuevo dni: " + alumno3.getDni());
+
 	}
 
 }
