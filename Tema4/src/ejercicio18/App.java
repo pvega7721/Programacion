@@ -41,7 +41,6 @@ public class App {
 		System.out.println("Nueva nota:" + alumno.getNota());
 		
 		Alumno alumno3 = new Alumno(dni);
-		alumno3.setDni("12345678T");
 		System.out.println("Nuevo dni: " + alumno3.getDni());
 
 	}
