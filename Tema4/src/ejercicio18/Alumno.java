@@ -1,10 +1,9 @@
 package ejercicio18;
 
 public class Alumno {
-
 	private String dni; 
 	private String nombre;
-	private int edad;
+	private Integer edad;
 	private Double nota;
 	
 	public Alumno(String dni, String nombre, int edad, Double nota) {
@@ -20,14 +19,9 @@ public class Alumno {
 		this.dni = dni;
 	}
 
-
-
-
 	public Alumno() {
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -62,7 +56,7 @@ public class Alumno {
 	}
 	
 	public void aprobar() {
-		nota = 5.00;
+		this.nota = 5.00;
 	}
 	
 }
