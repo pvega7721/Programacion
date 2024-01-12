@@ -2,15 +2,11 @@ package ejercicio21;
 
 public class Alumno extends Persona{
 	private String dni; 
-	private String nombre;
-	private Integer edad;
 	private Double nota;
 	
-	public Alumno(String dni, String nombre, int edad, Double nota) {
+	public Alumno(String dni, Double nota) {
 		super();
 		this.dni = dni;
-		this.nombre = nombre;
-		this.edad = edad;
 		this.nota = nota;
 	}
 	
@@ -21,22 +17,6 @@ public class Alumno extends Persona{
 
 	public Alumno() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Integer getEdad() {
-		return edad;
-	}
-
-	public void setEdad(int edad) {
-		this.edad = edad;
 	}
 
 	public Double getNota() {

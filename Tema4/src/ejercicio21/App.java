@@ -31,16 +31,21 @@ public class App {
 		Double nota = sc.nextDouble();
 		alumno.setNota(nota);
 		
+		System.out.println("Alumno 1:");
 		System.out.println("Tu dni es: " + alumno.getDni() + "\nTu edad es: " + alumno.getEdad() + "\nTu nombre es: " + alumno.getNombre() + "\nTu nota es: " + alumno.getNota()) ;
 	
 		sc.close();
 		
-		Alumno alumno2 = new Alumno(dni, nombre, edad, nota);
+		//Alumno2
+		Alumno alumno2 = new Alumno(dni, nota);
+		System.out.println("Alumno 2:");
+		System.out.println("Tu dni es: " + alumno2.getDni() + "\nTu edad es: " + alumno2.getEdad() + "\nTu nombre es: " + alumno2.getNombre() + "\nTu nota es: " + alumno2.getNota()) ;
 		
 		alumno.aprobar();
 		System.out.println("Nueva nota:" + alumno.getNota());
 		
 		Alumno alumno3 = new Alumno(dni);
+		System.out.println("Alumno3: ");
 		System.out.println("Nuevo dni: " + alumno3.getDni());
 
 	}
