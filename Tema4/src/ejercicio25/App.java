@@ -70,6 +70,10 @@ public class App {
 		//Imprimimos todos los datos del objeto profesor habiendo declarado tostring en la clase profesor.
 		System.out.println(profesor1);
 		
+		
+		Alumno [] array = new Alumno[3];
+		
+		
 		sc.close();
 		
 	}
