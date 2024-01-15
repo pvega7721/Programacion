@@ -47,6 +47,7 @@ public class Alumno extends Persona{
 		this.dni=dniNuevo;
 	}
 	
+	
 	public void aprobar() {
 		this.nota = 5.00;
 	}

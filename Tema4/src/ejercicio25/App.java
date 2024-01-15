@@ -71,7 +71,9 @@ public class App {
 		System.out.println(profesor1);
 		
 		
-		Alumno [] array = new Alumno[2];
+		Alumno [] array = new Alumno[3];
+		
+		
 		
 		
 		sc.close();
