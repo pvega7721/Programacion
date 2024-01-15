@@ -1,4 +1,4 @@
-package ejercicio24;
+package ejercicio25;
 
 import java.util.Objects;
 
