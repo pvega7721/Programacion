@@ -3,6 +3,8 @@ package ejercicio22;
 public class Alumno extends Persona{
 	private String dni; 
 	private Double nota;
+	//Añado atributo curso a la clase Alumno
+	private	String curso;
 	
 	public Alumno(String dni, Double nota) {
 		super();
@@ -17,6 +19,14 @@ public class Alumno extends Persona{
 
 	public Alumno() {
 		// TODO Auto-generated constructor stub
+	}
+	//añadir Get y Set
+	public String getCurso() {
+		return curso;
+	}
+
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 
 	public Double getNota() {

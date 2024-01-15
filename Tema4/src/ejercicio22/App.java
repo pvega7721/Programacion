@@ -31,22 +31,30 @@ public class App {
 		Double nota = sc.nextDouble();
 		alumno.setNota(nota);
 		
+		sc.nextLine();
+		
+		System.out.println("Introduce tu curso");
+		String curso = sc.nextLine();
+		alumno.setCurso(curso);
+		
 		System.out.println("Alumno 1:");
-		System.out.println("Tu dni es: " + alumno.getDni() + "\nTu edad es: " + alumno.getEdad() + "\nTu nombre es: " + alumno.getNombre() + "\nTu nota es: " + alumno.getNota()) ;
+		System.out.println("Tu dni es: " + alumno.getDni() + "\nTu edad es: " + alumno.getEdad() + "\nTu nombre es: " + alumno.getNombre() + "\nTu nota es: " + alumno.getNota() + "\nTu curso es : " + alumno.getCurso()) ;
 	
 		sc.close();
 		
 		//Alumno2
 		Alumno alumno2 = new Alumno(dni, nota);
-		System.out.println("Alumno 2:");
-		System.out.println("Tu dni es: " + alumno2.getDni() + "\nTu edad es: " + alumno2.getEdad() + "\nTu nombre es: " + alumno2.getNombre() + "\nTu nota es: " + alumno2.getNota()) ;
+		//System.out.println("Alumno 2:");
+		//System.out.println("Tu dni es: " + alumno2.getDni() + "\nTu edad es: " + alumno2.getEdad() + "\nTu nombre es: " + alumno2.getNombre() + "\nTu nota es: " + alumno2.getNota()) ;
 		
 		alumno.aprobar();
-		System.out.println("Nueva nota:" + alumno.getNota());
+		//System.out.println("Nueva nota:" + alumno.getNota());
 		
 		Alumno alumno3 = new Alumno(dni);
-		System.out.println("Alumno3: ");
-		System.out.println("Nuevo dni: " + alumno3.getDni());
+		//System.out.println("Alumno3: ");
+		//System.out.println("Nuevo dni: " + alumno3.getDni());
+		
+		
 		
 		
 	}
