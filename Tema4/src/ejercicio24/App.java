@@ -67,6 +67,8 @@ public class App {
 		System.out.println("Profesor1");
 		System.out.println("Su nombre es: " + profesor1.getNombre() + "\nSu edad es " + profesor1.getEdad());
 		
+		//Imprimimos todos los datos del objeto profesor habiendo declarado tostring en la clase profesor.
+		System.out.println(profesor1);
 		
 		sc.close();
 		
