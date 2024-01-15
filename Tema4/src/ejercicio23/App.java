@@ -36,12 +36,10 @@ public class App {
 		System.out.println("Introduce tu curso");
 		String curso = sc.nextLine();
 		alumno.setCurso(curso);
-		
+		//Mostramos los datos del alumno1
 		System.out.println("Alumno 1:");
 		System.out.println("Tu dni es: " + alumno.getDni() + "\nTu edad es: " + alumno.getEdad() + "\nTu nombre es: " + alumno.getNombre() + "\nTu nota es: " + alumno.getNota() + "\nTu curso es : " + alumno.getCurso()) ;
 	
-		sc.close();
-		
 		//Alumno2
 		Alumno alumno2 = new Alumno(dni, nota);
 		//System.out.println("Alumno 2:");
@@ -65,8 +63,12 @@ public class App {
 		Integer edadProfesor = sc.nextInt();
 		profesor1.setEdad(edadProfesor);
 		
+		//Mostramos los datos del profesor1
+		System.out.println("Profesor1");
+		System.out.println("Su nombre es: " + profesor1.getNombre() + "\nSu edad es " + profesor1.getEdad());
 		
 		
+		sc.close();
 		
 	}
 
