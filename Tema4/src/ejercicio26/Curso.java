@@ -1,4 +1,4 @@
-package ejercicio25;
+package ejercicio26;
 
 //Creo la clase curso
 public class Curso {
