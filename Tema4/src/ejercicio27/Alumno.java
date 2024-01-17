@@ -1,4 +1,4 @@
-package ejercicio26;
+package ejercicio27;
 
 import java.util.Objects;
 
@@ -50,11 +50,7 @@ public class Alumno extends Persona{
 	public void aprobar() {
 		this.nota = 5.00;
 	}
-	//validamos que dni no sea null y que la longitud sea 9
-	public boolean validarDNI() {
-		return (dni != null && dni.length()==9);
-	}
-	
+
 	@Override
 	public String toString() {
 		return "Alumno [dni=" + dni + ", nota=" + nota + ", curso=" + curso + "]";
