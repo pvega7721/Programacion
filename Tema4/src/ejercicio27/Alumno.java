@@ -6,7 +6,7 @@ public class Alumno extends Persona{
 	private String dni; 
 	private Double nota;
 	//Añado atributo curso a la clase Alumno
-	private	String curso;
+	private	Curso curso;
 	
 	public Alumno(String dni) {
 		super();
@@ -21,11 +21,11 @@ public class Alumno extends Persona{
 		// TODO Auto-generated constructor stub
 	}
 	//añadir Get y Set
-	public String getCurso() {
+	public Curso getCurso() {
 		return curso;
 	}
 
-	public void setCurso(String curso) {
+	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 
@@ -42,18 +42,29 @@ public class Alumno extends Persona{
 	}
 	
 	//Pasamos dni a mayúscula
-	public void setDni(String dniNuevo) {
-		this.dni=dniNuevo.toUpperCase();
+	public void setDni(String dni) {
+		if (dni!= null) {
+			dni=dni.toUpperCase();
+		}
+		this.dni=dni;
 	}
 	
 	
 	public void aprobar() {
 		this.nota = 5.00;
 	}
+	public Boolean validarDNI() {
+		if (dni.isEmpty() || dni.equals(null) && dni.length()!=9) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 
 	@Override
 	public String toString() {
-		return "Alumno [dni=" + dni + ", nota=" + nota + ", curso=" + curso + "]";
+		return "Alumno [dni=" + dni + ", nota=" + nota + ", nombre=" + getNombre()
+		+ ", edad=" + getEdad() + ", curso=" + curso + "]";
 	}
 
 	@Override
