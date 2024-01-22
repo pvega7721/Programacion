@@ -43,6 +43,7 @@ public class App {
 		else {
 			System.out.println("Felicidades: todos los alumnos son distintos!!");
 		}
+
 		
 		scanner.close();
 	}
