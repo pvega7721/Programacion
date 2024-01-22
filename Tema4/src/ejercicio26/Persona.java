@@ -17,4 +17,15 @@ public class Persona {
 		this.edad = edad;
 	}
 	
+	public void registrar() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Operaci�n... " + i);
+		}
+	}
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", edad=" + edad + "]";
+	}
+	
+	
 }

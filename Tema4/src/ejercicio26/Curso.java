@@ -1,18 +1,13 @@
 package ejercicio26;
 
-//Creo la clase curso
 public class Curso {
-	//Atributos privados identificador y descripción
-	private Integer identificador;
+	private Long identificador;
 	private String descripcion;
 	
-	
-
-	//Añado métodos Get y Set.
-	public Integer getIdentificador() {
+	public Long getIdentificador() {
 		return identificador;
 	}
-	public void setIdentificador(Integer identificador) {
+	public void setIdentificador(Long identificador) {
 		this.identificador = identificador;
 	}
 	public String getDescripcion() {
@@ -21,7 +16,9 @@ public class Curso {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+	@Override
+	public String toString() {
+		return "Curso [identificador=" + identificador + ", descripcion=" + descripcion + "]";
+	}
 	
-	
-
 }
