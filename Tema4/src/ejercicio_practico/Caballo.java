@@ -62,6 +62,14 @@ public class Caballo {
 			this.edad = edad;
 		}
 		
+		public int getCarrerasGanadas() {
+			return carrerasGanadas;
+		}
+
+		public void setCarrerasGanadas(int carrerasGanadas) {
+			this.carrerasGanadas = carrerasGanadas;
+		}
+
 		@Override
 		public String toString() {
 			return "Caballo [nombre=" + nombre + ", color=" + color + ", edad=" + edad + ", carrerasGanadas="

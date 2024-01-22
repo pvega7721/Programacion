@@ -47,8 +47,16 @@ public class Repaso {
 		System.out.println(datos);
 		
 		Caballo caballo2 = new Caballo("Fideo", "Blanco", 4, 20);
+		int carreras = caballo2.getCarrerasGanadas();
+		System.out.println(carreras);
 		
+		Caballo caballo3 = new Caballo();
+		System.out.println(caballo3);
 		
+		caballo3.setNombre("Pedro");
+		caballo3.setColor("Azul");
+		caballo3.setEdad(5);
+		caballo3.setCarrerasGanadas(15);
 	}
 
 }
