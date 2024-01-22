@@ -54,7 +54,7 @@ public class Alumno extends Persona{
 		this.nota = 5.00;
 	}
 	public Boolean validarDNI() {
-		if (dni.isEmpty() || dni.equals(null) && dni.length()!=9) {
+		if (dni==null || dni.isEmpty() || dni.length()!=9) {
 			return false;
 		}else {
 			return true;

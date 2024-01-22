@@ -14,9 +14,17 @@ public class App {
 		
 		Alumno[] alumnos = new Alumno[3];
 		for (int i = 0; i < alumnos.length; i++) {
-			System.out.println("Dime el dni");
-			String dni = scanner.nextLine();
+			String dni="";
 			Alumno alumno = new Alumno(dni);
+			do {
+				System.out.println("Dime el dni");
+				dni = scanner.nextLine();
+				boolean esValido = alumno.validarDNI();
+				
+				if(!esValido) {
+					System.out.println("DNI incorrecto, introducelo de nuevo");
+				}
+			} while (!alumno.validarDNI());
 			System.out.println("Dime el nombre");
 			String nombre = scanner.nextLine();
 			alumno.setNombre(nombre);
