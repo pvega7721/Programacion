@@ -1,4 +1,4 @@
-package ejercicio29;
+package ejercicio30;
 
 import java.util.Scanner;
 
@@ -40,6 +40,7 @@ public class App {
 			alumno.setNota(nota);
 			alumno.setCurso(curso);
 			alumnos[i] = alumno;
+			curso.addAlumno(alumno);
 		}
 		
 		System.out.println("Recorremos los alumnos:");

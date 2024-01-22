@@ -1,8 +1,18 @@
-package ejercicio29;
+package ejercicio30;
 
 public class Curso {
 	private Long identificador;
 	private String descripcion;
+	private Alumno[] alumnos;
+	
+	
+	for(int i=0;i<alumnos.length;i++) {
+		if(alumnos[i] == null) {
+			alumnos[i] =alumno;
+			return;
+		}
+	}
+	
 	
 	public Long getIdentificador() {
 		return identificador;
