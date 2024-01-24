@@ -38,23 +38,28 @@ public class Semaforo {
 
 	@Override
 	public String toString() {
-		//return "Semaforo [color=" + color + ", parpadeando=" + parpadeando + "]";
-		if(color.equals(ROJO)) {
-			return "Semáforo en ROJO";
-		}else if(color.equals(VERDE)) {
-			return "Semáforo en VERDE";
-		}else if(color.equals(AMBAR) && parpadeando) {
-			return "Semáforo en AMBAR parpadeando";
-		}else if(color.equals(AMBAR)) {
-			return "Semáforo en AMBAR";
-		}else {
-		return color;
+		
+		if(color.equals(AMBAR) && parpadeando) {
+			return "Semáforo en " + AMBAR + " parpadeando";
 		}
+		return "Semáforo en " + color;
 	}
-	
+		
 	//Método que cambia el estado del semáforo según el ciclo (verde-ambar parpadeando-ambar sin parpadear-rojo)
 	public void cambiarEstado() {
-		
+		if(color.equals(VERDE)) {
+			color = AMBAR;
+			parpadeando = true;
+		}
+		else if(color.equals(AMBAR) && parpadeando) {
+			parpadeando = false;
+		}
+		else if(color.equals(AMBAR)) {
+			color = ROJO;
+		}
+		else {
+			color=VERDE;
+		}
 	}
 	
 }
