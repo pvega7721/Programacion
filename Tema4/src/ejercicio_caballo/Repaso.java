@@ -1,4 +1,4 @@
-package ejercicio_practico;
+package ejercicio_caballo;
 
 public class Repaso {
 
