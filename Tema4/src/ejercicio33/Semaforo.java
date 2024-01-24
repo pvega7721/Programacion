@@ -29,7 +29,15 @@ public class Semaforo {
 	}
 
 	public void setParpadeando(Boolean parpadeando) {
+		if(parpadeando && !color.equals(AMBAR)) {
+			return;
+		}
 		this.parpadeando = parpadeando;
+	}
+
+	@Override
+	public String toString() {
+		return "Semaforo [color=" + color + ", parpadeando=" + parpadeando + "]";
 	}
 	
 }
