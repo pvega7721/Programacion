@@ -6,18 +6,19 @@ public class Semaforo {
 	public static final String VERDE = "VERDE";
 	public static final String AMBAR = "AMBAR";
 	
+	//Tendrá dos atributos; color, de tipo String y parpadeando, de tipo Boolean
 	private String color;
 	private Boolean parpadeando;
-	
+	//Constructor por defecto inicializado en Rojo y sin parpadear
 	public Semaforo() {
 		this.color=ROJO;
 		this.parpadeando=false;
 	}
-
+	//Creamos metodos get y set
 	public String getColor() {
 		return color;
 	}
-
+	//Validamos que sólo cambiará de color si se indica Rojo, Verde o Ambar.
 	public void setColor(String color) {
 		if(color.equals(ROJO) || color.equals(VERDE) || color.equals(AMBAR)) {
 			this.color = color;
@@ -27,7 +28,7 @@ public class Semaforo {
 	public Boolean getParpadeando() {
 		return parpadeando;
 	}
-
+	//Validamos que el estado de parpadeo sólo puede cabiar si el color es Ambar.
 	public void setParpadeando(Boolean parpadeando) {
 		if(parpadeando && !color.equals(AMBAR)) {
 			return;
@@ -37,7 +38,23 @@ public class Semaforo {
 
 	@Override
 	public String toString() {
-		return "Semaforo [color=" + color + ", parpadeando=" + parpadeando + "]";
+		//return "Semaforo [color=" + color + ", parpadeando=" + parpadeando + "]";
+		if(color.equals(ROJO)) {
+			return "Semáforo en ROJO";
+		}else if(color.equals(VERDE)) {
+			return "Semáforo en VERDE";
+		}else if(color.equals(AMBAR) && parpadeando) {
+			return "Semáforo en AMBAR parpadeando";
+		}else if(color.equals(AMBAR)) {
+			return "Semáforo en AMBAR";
+		}else {
+		return color;
+		}
+	}
+	
+	//Método que cambia el estado del semáforo según el ciclo (verde-ambar parpadeando-ambar sin parpadear-rojo)
+	public void cambiarEstado() {
+		
 	}
 	
 }
