@@ -13,7 +13,7 @@ public class App {
 		System.out.println(semaforo);
 		
 		//paso 3
-		semaforo.setColor(semaforo.VERDE);
+		semaforo.setColor(Semaforo.VERDE);
 		System.out.println(semaforo);
 		
 		//paso 4
