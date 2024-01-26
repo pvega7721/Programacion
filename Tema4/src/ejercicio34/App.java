@@ -45,6 +45,7 @@ public class App {
 			}
 		}
 		System.out.println(listaCadenas);
+		sc.close();
 	}
 
 }
