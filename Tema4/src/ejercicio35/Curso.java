@@ -1,4 +1,4 @@
-package ejercicios25;
+package ejercicio35;
 
 public class Curso {
 	private Long identificador;

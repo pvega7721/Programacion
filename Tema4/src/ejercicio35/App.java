@@ -1,5 +1,7 @@
-package ejercicios25;
+package ejercicio35;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -10,8 +12,9 @@ public class App {
 		curso.setIdentificador(1L);
 		curso.setDescripcion("DAM/DAW");
 
-		Alumno[] alumnos = new Alumno[3];
-		for (int i = 0; i < alumnos.length; i++) {
+		List<Alumno> alumnos = new ArrayList<>();
+		//Alumno[] alumnos = new Alumno[3];
+		for (int i = 0; i < 3; i++) {
 			System.out.println("Dime el dni");
 			String dni = scanner.nextLine();
 			Alumno alumno = new Alumno(dni);
@@ -26,16 +29,16 @@ public class App {
 			scanner.nextLine();
 			alumno.setNota(nota);
 			alumno.setCurso(curso);
-			alumnos[i] = alumno;
+			alumnos.add(alumno);
 		}
 		
 		for (Alumno alumno : alumnos) {
 			System.out.println(alumno);
 		}
 		
-		if (alumnos[0].equals(alumnos[1]) 
-				|| alumnos[0].equals(alumnos[2])
-				|| alumnos[1].equals(alumnos[2])) {
+		if (alumnos.get(0).equals(alumnos.get(1)) 
+				|| alumnos.get(0).equals(alumnos.get(2))
+				|| alumnos.get(1).equals(alumnos.get(2))) {
 			System.err.println("Error: hay al menos 2 alumnos repetidos");
 		}
 		else {
