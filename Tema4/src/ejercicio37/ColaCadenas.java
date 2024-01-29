@@ -4,26 +4,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColaCadenas {
+	//atributo de la clase
+	 private List<String> colaEspera;
 	
-	List<String> colaEspera = new ArrayList<>();
+	//la lista se crea en el constructor
+	public ColaCadenas() {
+		colaEspera=new ArrayList<>();
+	}
 
-	//Métdo que recibe una cadena y la mete en la cola
 	public void añadirCadena(String cadena) {
 		colaEspera.add(cadena);
 	}
-	//Método que devuelve la primera posición de la cola
+	
 	public String sacarCadena() {
-		return colaEspera.get(0);
+		if(colaEspera.isEmpty()) {
+		return null;
+		}
+		return colaEspera.remove(0);
 	}
-	//
+	
 	public Integer getTamaño() {
 		return colaEspera.size();
 	}
 	@Override
 	public String toString() {
-		return "ColaCadenas [colaEspera=" + colaEspera + ", sacarCadena()=" + sacarCadena() + ", getTamaño()="
-				+ getTamaño() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return colaEspera.toString();
 	}
 	
 	
