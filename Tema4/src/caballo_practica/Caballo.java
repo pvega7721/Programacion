@@ -31,6 +31,7 @@ public class Caballo {
 	//16. Comentar el método anterior
 		public Integer anyoNacimiento(){
 			Integer anyoNacimiento = 2024 - edad;
+			System.out.println(anyoNacimiento);
 			return anyoNacimiento;
 		}
 		

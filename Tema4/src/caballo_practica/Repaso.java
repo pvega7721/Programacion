@@ -6,7 +6,7 @@ public class Repaso {
 		//3-4-5. Declarar variables
 		String mensaje = "Hola, ¿Cómo estás?";
 		Boolean haceSol = true;
-		int dias = 7;
+		Integer dias = 7;
 	// 	6. Imprimir mensaje
 		System.out.println(mensaje);
 	//	9. Crear variable caballo1 que sea un objeto de tipo Caballo
@@ -23,6 +23,7 @@ public class Repaso {
 	//	14. Llamar al método imprimeCarrerasGanadas
 		//caballo1.imprimeCarrerasGanadas(); Lo comento porque da error al comentarlo en la clase caballo
 	//	17. Llamar la método anyoNacimiento
+		caballo1.setEdad(4);
 		caballo1.anyoNacimiento();
 	}
 

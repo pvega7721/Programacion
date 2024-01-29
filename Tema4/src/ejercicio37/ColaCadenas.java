@@ -19,6 +19,12 @@ public class ColaCadenas {
 	public Integer getTamaño() {
 		return colaEspera.size();
 	}
+	@Override
+	public String toString() {
+		return "ColaCadenas [colaEspera=" + colaEspera + ", sacarCadena()=" + sacarCadena() + ", getTamaño()="
+				+ getTamaño() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
 	
 	
 }
