@@ -2,10 +2,11 @@ package caballo_practica;
 //7. crear clase pública Caballo
 public class Caballo {
 	//8. Crear atributos
-	public String nombre;
-	public String color;
-	public int edad;
-	public int carrerasGanadas;
+	//10. Cambiar los atributos a privado
+	private String nombre;
+	private String color;
+	private Integer edad;
+	private int carrerasGanadas;
 	
 	public Caballo() {
 		
@@ -18,6 +19,22 @@ public class Caballo {
 		this.edad = edad;
 		this.carrerasGanadas = carrerasGanadas;
 	}
+	
+	//12. Creo método imprimeCarrerasGanadas.
+	/*13. Comentar el método anterior.
+	 * public void imprimeCarrerasGanadas() {
+		System.out.println("El número de carreras ganadas es: " + carrerasGanadas);
+		} 
+	*/
+	
+	//15. Crear un método público anyoNacimiento que devueve el año de nacimiento del caballo
+	//16. Comentar el método anterior
+		public Integer anyoNacimiento(){
+			Integer anyoNacimiento = 2024 - edad;
+			return anyoNacimiento;
+		}
+		
+	
 	// Para el apartado 9, creamos getters an setters
 	public String getNombre() {
 		return nombre;
