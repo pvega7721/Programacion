@@ -7,6 +7,8 @@ public class Jugador {
 	private Integer dorsal;
 	
 	public Jugador(String nombre, Integer dorsal) {
+		this.nombre = nombre;
+		this.dorsal = dorsal;
 		
 	}
 

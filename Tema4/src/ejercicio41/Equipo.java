@@ -11,7 +11,7 @@ public class Equipo {
 	private List<Jugador> listaJugadores = new ArrayList<>();
 	
 	public Equipo (String nombre) {
-		
+		this.nombre = nombre;
 	}
 
 	@Override
