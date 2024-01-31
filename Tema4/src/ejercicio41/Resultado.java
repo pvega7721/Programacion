@@ -7,11 +7,36 @@ public class Resultado {
 	private Integer golesLocales;
 	private Integer golesVisitante;
 	
+	//Constructor por defecto inicializado a 0
 	public Resultado() {
 		super();
 		this.golesLocales = 0;
 		this.golesVisitante = 0;
 	}
+	
+	//Método
+	public Boolean isVictoriaLocal() {
+		if(golesLocales>golesVisitante) {
+			return true;
+		}else 
+			return false;
+	}
+	
+	public Boolean isVictoriaVisitante() {
+		if(golesVisitante>golesLocales) {
+			return true;
+		}else
+			return false;
+	}
+	
+	public Boolean isEmpate() {
+		if(golesVisitante==golesLocales) {
+			return true;
+		}else
+			return false;
+	}
+	
+	
 	//Métodos get y set de los atributos
 	public Integer getGolesLocales() {
 		return golesLocales;
