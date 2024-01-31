@@ -35,6 +35,30 @@ public class Equipo {
 	public String toString() {
 		return nombre + " - Capitán:" + capitan + " - Jugadores:" + listaJugadores + "]";
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Jugador getCapitan() {
+		return capitan;
+	}
+
+	public void setCapitan(Jugador capitan) {
+		this.capitan = capitan;
+	}
+
+	public List<Jugador> getListaJugadores() {
+		return listaJugadores;
+	}
+
+	public void setListaJugadores(List<Jugador> listaJugadores) {
+		this.listaJugadores = listaJugadores;
+	}
 	
 	
 }
