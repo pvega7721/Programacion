@@ -9,7 +9,6 @@ public class Equipo {
 	private String nombre;
 	private Jugador capitan;
 	private List<Jugador> listaJugadores = new ArrayList<>();
-	//Static aplica el valor para todos los objetos de tipo Equipo.
 	private static String competicion;
 	
 	public Equipo (String nombre) {
