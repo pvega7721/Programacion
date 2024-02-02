@@ -26,6 +26,11 @@ public abstract class Persona {
 	public abstract Integer getSueldo() {
 		
 	}
+	@Override
+	public String toString() {
+		return "Persona [nombre=" + nombre + ", anoNacimiento=" + anoNacimiento + ", nacionalidad=" + nacionalidad
+				+ "]";
+	}
 	
 	
 }
