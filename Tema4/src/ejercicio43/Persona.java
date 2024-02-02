@@ -1,10 +1,9 @@
 package ejercicio43;
 
-public class Persona {
+public abstract class Persona {
 	private String nombre;
 	private Integer anoNacimiento;
 	private String nacionalidad;
-	
 	
 	public String getNombre() {
 		return nombre;
@@ -23,6 +22,9 @@ public class Persona {
 	}
 	public void setNacionalidad(String nacionalidad) {
 		this.nacionalidad = nacionalidad;
+	}
+	public abstract Integer getSueldo() {
+		
 	}
 	
 	

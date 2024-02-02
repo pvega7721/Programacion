@@ -5,10 +5,13 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//Creamos los actores
-		Actores actor1 = new Actores();
-		Actores actor2 = new Actores();
-		Actores actor3 = new Actores();
-		Actores actor4 = new Actores();
+		Actor actor1 = new Actor();
+		
+		Actor actor2 = new Actor();
+		
+		Actor actor3 = new Actor();
+		
+		Actor actor4 = new Actor();
 		
 		//Les damos fecha de nacimiento
 		actor1.setAnoNacimiento(1983);
@@ -46,6 +49,29 @@ public class App {
 		guionista2.setNacionalidad("China");
 		guionista1.setNombre("Marco Smith");
 		guionista2.setNombre("Cheng Shu");
+		
+		//Creamos pelicula
+		Pelicula pelicula1 = new Pelicula();
+		//le damos valor a sus atributos
+		pelicula1.setAnoEstreno(2027);
+		pelicula1.setTitulo("Do you know Joe Blas");
+		pelicula1.setDirector(director);
+		pelicula1.setGuionista(guionista1);
+		pelicula1.setActor().add(actor1);
+		pelicula1.setActor(actor2);
+		
+		//Creamos otra pelicula
+		Pelicula pelicula2 = new Pelicula();
+		//le damos valor a sus atributos
+		pelicula2.setAnoEstreno(2027);
+		pelicula2.setTitulo("Muerte en la sombra");
+		pelicula2.setDirector(director);
+		pelicula2.setGuionista(guionista2);
+		pelicula2.setActor(actor1);
+		pelicula2.setActor(actor2);
+		pelicula2.setActor(actor3);
+		pelicula2.setActor(actor4);
+		
 	}
 
 }
