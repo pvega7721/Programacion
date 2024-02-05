@@ -32,7 +32,6 @@ public class App {
 		System.out.println("Puntos totales del equipo: " + jugador.getEquipo().getTotalPuntosVida());
 		
 		
-		
 	}
 
 }
