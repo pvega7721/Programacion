@@ -1,27 +1,45 @@
 package ejercicio44;
 
-public class Personaje extends Jugador{
-	//nombre lo tiene la clase padre
-	public Integer codigo;
-	public Integer puntosVida;
+import java.util.Objects;
+
+public abstract class Personaje{
+	private String nombre;
+	public String codigo;
 	
-	public Integer getCodigo() {
+	public abstract Integer getPuntosVida();
+	public abstract Integer getDaño();
+	public abstract Integer getDañoTiempo();
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setCodigo(String string) {
+		this.codigo = string;
 	}
-	public Integer getPuntosVida() {
-		return puntosVida;
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Personaje other = (Personaje) obj;
+		return Objects.equals(codigo, other.codigo) && Objects.equals(nombre, other.nombre);
 	}
-	public void setPuntosVida(Integer puntosVida) {
-		this.puntosVida = puntosVida;
-	}
-	
 	@Override
 	public String toString() {
-		return "Personaje [codigo=" + codigo + ", puntosVida=" + puntosVida + "]";
+		return "Personaje [nombre=" + nombre + ", codigo=" + codigo + "]";
 	}
+	
+	
 	
 	
 }

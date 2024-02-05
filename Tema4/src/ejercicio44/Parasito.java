@@ -1,23 +1,27 @@
 package ejercicio44;
 
 public class Parasito extends Personaje{
-	public Integer dañoSeg = 2;
-
-	public Parasito() {
-		puntosVida=200;
+	private static final Integer PUNTOS_VIDA = 200;
+	private static final Integer DAÑO = 2;
+	private static final Integer DAÑO_TIEMPO = 1;
+	
+	
+	@Override
+	public Integer getPuntosVida() {
+		return PUNTOS_VIDA;
 	}
-	public Integer getDañoSeg() {
-		return dañoSeg;
+	public  Integer getDaño() {
+		return DAÑO;
 	}
-
-	public void setDañoSeg(Integer dañoSeg) {
-		this.dañoSeg = dañoSeg;
+	public  Integer getDañoTiempo() {
+		return DAÑO_TIEMPO;
 	}
 
 	@Override
 	public String toString() {
-		return "Parasito [dañoSeg=" + dañoSeg + "]";
+		return "Parasito []";
 	}
+	
 	
 	
 }

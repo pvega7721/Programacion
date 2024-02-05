@@ -2,24 +2,24 @@ package ejercicio44;
 
 public class Jugador {
 	public String nombre;
-	public String equipoCombate;
+	public EquipoCombate equipo;
 	
 	public String getNombre() {
 		return nombre;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public String setNombre(String string) {
+		return nombre;
 	}
-	public String getEquipoCombate() {
-		return equipoCombate;
+	public EquipoCombate getEquipo() {
+		return equipo;
 	}
-	public void setEquipoCombate(String equipoCombate) {
-		this.equipoCombate = equipoCombate;
+	public void setEquipo(EquipoCombate equipo) {
+		this.equipo= equipo;
 	}
 	
 	@Override
 	public String toString() {
-		return "Jugador [nombre=" + nombre + ", equipoCombate=" + equipoCombate + "]";
+		return "Jugador [nombre=" + nombre + ", equipoCombate=" + equipo + "]";
 	}
 	
 	
