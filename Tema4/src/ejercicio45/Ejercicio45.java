@@ -44,6 +44,7 @@ public class Ejercicio45 {
 				+ periodo.getMonths() + "meses"
 				+ periodo.getDays() + "dias");
 		LocalTime hora = LocalTime.now();
+		
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm:ss");
 		System.out.println("Hora actual: " + formato.format(hora));
 		
