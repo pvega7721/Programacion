@@ -32,5 +32,15 @@ public class Carrito {
 		this.fechaCreacion = LocalDate.now();
 		this.ultimaActualizacion = LocalDate.now();
 	}
+	public Integer getCantidad() {
+		return listaArticulos.size();
+	}
+	public double getTotal() {
+		Double suma=0.0;
+		for(int i =0; i<listaArticulos.size();i++) {
+			suma += listaArticulos.get(i);
+		}
+		return suma;
+	}
 
 }
