@@ -1,6 +1,6 @@
 package Ejercicio47;
 
 public class articulo {
-	String descripcion;
-	Double precio;
+	private String descripcion;
+	private Double precio;
 }
