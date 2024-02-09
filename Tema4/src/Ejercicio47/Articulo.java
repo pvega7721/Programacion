@@ -11,7 +11,7 @@ public class Articulo {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Double getPrecio() {
+	public  Double getPrecio() {
 		return precio;
 	}
 	public void setPrecio(Double precio) {

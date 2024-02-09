@@ -1,6 +1,7 @@
 package Ejercicio47;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,24 @@ public class Carrito {
 	private Cliente cliente;
 	private List<Articulo> listaArticulos;
 
+	public Carrito(Cliente cliente) {
+		this.cliente = cliente;
+		this.fechaCreacion = LocalDate.now();
+		this.ultimaActualizacion = LocalDate.now();
+		//La lista se crea en el constructor
+		listaArticulos = new ArrayList<>();
+	}
+	
+	
+	public Double getTotal() {
+		Double suma=0.0;
+		for(Articulo articulo: listaArticulos) {
+			
+			suma = suma + articulo.getPrecio();
+		}
+		return suma;
+	}
+	
 	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
 	}
@@ -27,34 +46,26 @@ public class Carrito {
 	}
 	
 
-	public Carrito(Cliente cliente) {
-		this.cliente = cliente;
-		this.fechaCreacion = LocalDate.now();
-		this.ultimaActualizacion = LocalDate.now();
-		listaArticulos = new ArrayList<>();
-	}
+	
 	public Integer getCantidad() {
 		return listaArticulos.size();
 	}
-	Double suma=0.0;
-	public String getTotal() {
-		
-		for(int i =0; i<listaArticulos.size();i++) {
-			//Preguntar a Belén
-			suma += listaArticulos.get(i);
+	
+	public Double getPrecioMedio() {
+		if(getCantidad() == 0) {
+			return 0.00;
 		}
-		return "El total a pagar es: " + suma;
+		return getTotal() / getCantidad();
 	}
-	public String getPrecioMedio() {
-		Double precioMedio=0.0;
-		Double preciomedio=suma/listaArticulos.size();
-		return "El precio medio es: " + precioMedio;
+	public void addArticulo(Articulo articulo) {
+		listaArticulos.add(articulo);
+		ultimaActualizacion = LocalDate.now();
 	}
-	public void addArticulo(ArrayList<Articulo> lista, Articulo Articulo) {
-			//Preguntar a belén
-	}
-	public void borrarArticulo() {
-			//Preguntar a Belén
+	public void borrarArticulo(int posicion) {
+		
+		if(posicion >= 0 && posicion<this.listaArticulos.size())
+		listaArticulos.remove(posicion);
+		ultimaActualizacion = LocalDate.now();
 	}
 	public void vaciarCesta() {
 		listaArticulos.clear();
@@ -62,8 +73,10 @@ public class Carrito {
 
 	@Override
 	public String toString() {
-		return "Carrito [cliente=" + cliente + ", listaArticulos=" + listaArticulos + ", getUltimaActualizacion()="
-				+ getUltimaActualizacion() + ", getTotal()=" + getTotal() + "]";
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		return "Cliente=" + cliente.getDni() + ", " + cliente.getNombre() + ""
+				+ "Articulos=" + getCantidad() + getTotal() 
+				+", Ultima Actualizacion=" + getUltimaActualizacion();
 	}
 	
 
