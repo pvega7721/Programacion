@@ -8,7 +8,7 @@ public class App {
 		//paso 1
 		cliente1.setDni("12345678X");
 		cliente1.setNombre("Blas de los Montes");
-		//falta paso 2
+		//paso2
 		Carrito carrito1 = new Carrito(cliente1);
 		System.out.println(carrito1);
 		//paso 3
@@ -18,7 +18,10 @@ public class App {
 		prenda1.setTalla("XL");
 		prenda1.setColor("Azul");
 		
-		//falta paso 4
+		//paso 4
+		carrito1.addArticulo(prenda1);
+		carrito1.addArticulo(prenda1);
+		System.out.println(carrito1);
 		
 		//paso 5
 		Libro libro1 = new Libro();
@@ -26,12 +29,23 @@ public class App {
 		libro1.setPrecio(15.00);
 		libro1.setAutor("Nietzeche");
 		
-		//Falta paso 6
-		//Falta paso 7
-		//Falta paso 8
-		//Falta paso 9
-		//Falta paso 10
+		//paso 6
+		carrito1.addArticulo(libro1);
+		System.out.println(carrito1);
+
+		//paso 7
+		carrito1.borrarArticulo(1);
+		System.out.println(carrito1);
+	
+		//paso 8
+		System.out.println(carrito1.getPrecioMedio());
 		
+		//paso 9
+		carrito1.vaciarCesta();
+		System.out.println(carrito1);
+		
+		//paso 10
+		System.out.println(carrito1.getPrecioMedio());
 	}
 
 }
