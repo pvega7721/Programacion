@@ -1,13 +1,11 @@
-package ejercicio18;
-//Crear clase Alumno
+package ejercicio19;
+
 public class Alumno {
-	//Crear atributos
 	private String dni;
 	private String nombre;
 	private Integer edad;
 	private Double nota;
 	
-	//Generar getters y setters
 	public String getDni() {
 		return dni;
 	}
@@ -32,10 +30,10 @@ public class Alumno {
 	public void setNota(Double nota) {
 		this.nota = nota;
 	}
-	@Override
-	public String toString() {
-		return "Alumno [dni=" + dni + ", nombre=" + nombre + ", edad=" + edad + ", nota=" + nota + "]";
+	
+	public void aprobar(Double nota) {
+		this.nota = 5.0;
 	}
 	
-
+	
 }

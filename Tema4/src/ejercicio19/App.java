@@ -1,6 +1,8 @@
-package ejercicio18;
+package ejercicio19;
 
 import java.util.Scanner;
+
+import ejercicio18.Alumno;
 
 public class App {
 
@@ -22,6 +24,6 @@ public class App {
 		alumno1.setNota(sc.nextDouble());
 		
 		sc.close();
-	}	
+	}
 
 }
