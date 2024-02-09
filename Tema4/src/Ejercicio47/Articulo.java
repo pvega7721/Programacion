@@ -1,17 +1,10 @@
 package Ejercicio47;
 
-public class articulo {
-	private String nombre;
+public class Articulo {
 	private String descripcion;
 	private Double precio;
 	
 	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 	public String getDescripcion() {
 		return descripcion;
 	}

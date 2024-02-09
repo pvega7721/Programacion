@@ -9,10 +9,11 @@ public class App {
 		cliente1.setDni("12345678X");
 		cliente1.setNombre("Blas de los Montes");
 		//falta paso 2
-		
+		Carrito carrito1 = new Carrito(cliente1);
+		System.out.println(carrito1);
 		//paso 3
 		Ropa prenda1 = new Ropa();
-		prenda1.setNombre("Poncho");
+		prenda1.setDescripcion("Poncho");
 		prenda1.setPrecio(20.00);
 		prenda1.setTalla("XL");
 		prenda1.setColor("Azul");
@@ -21,7 +22,7 @@ public class App {
 		
 		//paso 5
 		Libro libro1 = new Libro();
-		libro1.setNombre("Así habló Zaratustra");
+		libro1.setDescripcion("Así habló Zaratustra");
 		libro1.setPrecio(15.00);
 		libro1.setAutor("Nietzeche");
 		

@@ -8,7 +8,7 @@ public class Carrito {
 	private LocalDate fechaCreacion;
 	private LocalDate ultimaActualizacion;
 	private Cliente cliente;
-	private List<articulo> listaArticulos = new ArrayList<>();
+	private List<Articulo> listaArticulos;
 
 	public LocalDate getFechaCreacion() {
 		return fechaCreacion;
@@ -22,7 +22,7 @@ public class Carrito {
 		return cliente;
 	}
 
-	public List<articulo> getListaArticulos() {
+	public List<Articulo> getListaArticulos() {
 		return listaArticulos;
 	}
 	
@@ -31,6 +31,7 @@ public class Carrito {
 		this.cliente = cliente;
 		this.fechaCreacion = LocalDate.now();
 		this.ultimaActualizacion = LocalDate.now();
+		listaArticulos = new ArrayList<>();
 	}
 	public Integer getCantidad() {
 		return listaArticulos.size();
@@ -49,7 +50,7 @@ public class Carrito {
 		Double preciomedio=suma/listaArticulos.size();
 		return "El precio medio es: " + precioMedio;
 	}
-	public void addArticulo(ArrayList<articulo> lista, articulo articulo) {
+	public void addArticulo(ArrayList<Articulo> lista, Articulo Articulo) {
 			//Preguntar a belén
 	}
 	public void borrarArticulo() {

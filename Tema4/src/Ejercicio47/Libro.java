@@ -1,6 +1,6 @@
 package Ejercicio47;
 
-public class Libro extends articulo{
+public class Libro extends Articulo{
 	private String autor;
 
 	public String getAutor() {
