@@ -44,13 +44,9 @@ public class App {
 		//apartado 3
 		
 		
-		
+		sc.close();
 		}
 		
-		
-		
-		
-		sc.close();
 	}
 
-}
+
