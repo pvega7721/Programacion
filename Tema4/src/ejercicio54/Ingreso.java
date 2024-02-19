@@ -11,4 +11,9 @@ public class Ingreso extends Movimiento{
 		this.descripcion = descripcion;
 	}
 	//falta tostring
+	
+	@Override
+	public String getTipo() {
+		return INGRESO;
+	}
 }

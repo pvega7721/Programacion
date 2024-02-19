@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public abstract class Movimiento {
-	private LocalDate fecha;
-	private BigDecimal importe;
-	private final String CARGO = "C";
-	private final String RETIRADA = "R";
-	private final String IMPORTE = "I";
+	protected static final String CARGO = "C";
+	protected static final String RETIRADA = "R";
+	protected static final String INGRESO = "I";
+	protected LocalDate fecha;
+	protected BigDecimal importe;
 
 
 	public Movimiento(){
@@ -36,9 +36,7 @@ public abstract class Movimiento {
 		this.importe = importe;
 	}
 	
-	public String getTIPO() {
-		return TIPO;
-	}
+	public abstract String getTipo(); //Método abstracto no tiene contenido, solo se declara.
 
 
 	public String getIMPORTE() {

@@ -1,7 +1,7 @@
 package ejercicio54;
 
 
-public class Cargo extends Movimiento{
+public abstract class Cargo extends Movimiento{
 	private String cif;
 
 	public String getCif() {
@@ -13,4 +13,9 @@ public class Cargo extends Movimiento{
 	}
 	
 //falta tostring
+	
+	@Override
+	public String getTipo() {
+		return CARGO;
+	}
 }

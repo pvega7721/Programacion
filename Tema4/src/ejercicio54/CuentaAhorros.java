@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CuentaAhorros {
-	private String numCuenta;
+	private String numCuenta; //String porque puede empezar en 0
 	private List<Movimiento> movimientos;
 	
 	
@@ -19,8 +19,14 @@ public class CuentaAhorros {
 	}
 	
 	public BigDecimal obtenerTotal() {
+		BigDecimal saldoTotal = BigDecimal.ZERO;
 		
-		return
+		for (Movimiento movimiento : movimientos) {
+			if(movimiento.getTipo().equals("I")) {
+				saldoTotal = saldoTotal.add(movimiento.getImporte());
+			}
+		}
+		
 	}
 
 }
