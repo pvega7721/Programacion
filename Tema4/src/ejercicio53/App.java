@@ -28,13 +28,16 @@ public class App {
 		hucha1.sacarDinero(gasto1);
 		System.out.println(hucha1.getAhorro());
 		
-		//Paso 5  PREGUNTAR A BELÉN
+		//Paso 5 --
 		BigDecimal gasto2 = BigDecimal.valueOf(200);
-		hucha1.sacarDinero(gasto2);
+		//Guardo lo que hay en la hucha antes de borrarlo
+		BigDecimal ahorroActual = hucha1.getAhorro();
+		hucha1.sacarDinero(ahorroActual);
 		System.out.println(hucha1.getAhorro());
 		
-		//Paso 6 PREGUNTAR A BELÉN
-		hucha1.meterDinero(gasto2);
+		//Paso 6 --
+		//Imprimo lo que tenía en la hucha antes de borrarlo
+		hucha1.meterDinero(ahorroActual);
 		System.out.println(hucha1.getAhorro());
 		
 		//Paso7

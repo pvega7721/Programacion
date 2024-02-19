@@ -55,7 +55,7 @@ public class Hucha {
 	//Imprimir importe actual de la hucha con un formato determinado
 	@Override
 	public String toString() {
-		DecimalFormat formato = new DecimalFormat("#,##0.00€");
+		DecimalFormat formato = new DecimalFormat("#,##0.00 €");
 		return formato.format(ahorro);
 	}
 	
