@@ -39,8 +39,8 @@ public abstract class Movimiento {
 	public abstract String getTipo(); //Método abstracto no tiene contenido, solo se declara.
 
 
-	public String getIMPORTE() {
-		return IMPORTE;
+	public String getINGRESO() {
+		return INGRESO;
 	}
 
 
