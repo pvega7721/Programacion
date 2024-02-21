@@ -1,4 +1,4 @@
-package Ejercicio47;
+package ejercicio47;
 
 public class Cliente {
 	private String dni;
