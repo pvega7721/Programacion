@@ -1,4 +1,4 @@
-package ejRepaso2;
+package ejRepaso3;
 
 public class Telefono {
 	//Protected para que las clases hijas puedan verlos.
@@ -6,6 +6,12 @@ public class Telefono {
 	protected Boolean enLlamada;
 	
 	
+	
+	public Telefono(Integer numero, Boolean enLlamada) {
+		this.numero = numero;
+		this.enLlamada = false;
+	}
+
 	//Método que devuelve el número de telefono
 	public Integer consultarNumero() {
 		return this.numero;
