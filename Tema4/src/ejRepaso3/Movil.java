@@ -1,21 +1,22 @@
 package ejRepaso3;
 
-import java.math.BigDecimal;
 
 public class Movil extends Telefono{
 	private LocalizadorGPS  posgps;
 	
-	public Movil(Integer numero, LocalizadorGPS posgps) {
-		this.numero = numero;
+	
+	public Movil(Integer numero, Boolean enLlamada, LocalizadorGPS posgps) {
+		super(numero, enLlamada);
+		
 		this.posgps = posgps;
-		this.enLlamada=false;
 	}
 
-	public BigDecimal getPosgps() {
+
+	public LocalizadorGPS getPosgps() {
 		return posgps;
 	}
 
-	public void setPosgps(BigDecimal posgps) {
+	public void setPosgps(LocalizadorGPS posgps) {
 		this.posgps = posgps;
 	}
 	

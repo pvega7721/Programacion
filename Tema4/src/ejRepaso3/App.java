@@ -1,12 +1,17 @@
 package ejRepaso3;
 
+import java.math.BigDecimal;
+
 public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		//Creo la variable coordenadas para poder añadirla a telefono1.
+		LocalizadorGPS coordenadas = new LocalizadorGPS(new BigDecimal("2.2"), new BigDecimal("3.3"));
 		//Crear telefonos fijo y movil con número y gps/direccion
-		Movil telefono1 = new Movil(654654654, "posgps1");
-		Fijo telefono2 = new Fijo(954954954, "Dirección1");
+		Movil telefono1 = new Movil(654654654, false, coordenadas);
+		Fijo telefono2 = new Fijo(954954954, false, "Dirección1");
 		
 		//Imprimir número de cada uno
 		System.out.println(telefono1.consultarNumero());
