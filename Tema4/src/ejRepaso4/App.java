@@ -52,9 +52,9 @@ public class App {
 		libreria1.añadirLibroDigital(libro4);
 		
 		//llamo a los métodos
-		libreria1.obtenerLibroMasAntiguo();
-		libreria1.obtenerNumPaginasMedio();
-		libreria1.obtenerPesoTotal();
+		System.out.println(libreria1.obtenerLibroMasAntiguo());
+		System.out.println(libreria1.obtenerNumPaginasMedio());
+		System.out.println(libreria1.obtenerPesoTotal());;
 	}
 
 }
