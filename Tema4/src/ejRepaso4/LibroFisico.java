@@ -22,10 +22,7 @@ public class LibroFisico extends Libro{
 		this.alto = alto;
 	}
 	public Integer getTamaño() {
-		return tamaño;
-	}
-	public void setTamaño(Integer tamaño) {
-		this.tamaño = tamaño;
+		return alto*ancho;
 	}
 	
 }

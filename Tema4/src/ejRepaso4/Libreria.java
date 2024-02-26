@@ -1,6 +1,5 @@
 package ejRepaso4;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +7,16 @@ public class Libreria {
 	private List<Libro> libros;
 	private String direccion;
 	private Integer numTelefono;
-	
+
 	public Libreria() {
 		libros = new ArrayList<>();
+	}
+	
+	public void añadirLibroFisico(LibroFisico libro) {
+		libros.add(libro);
+	}
+	public void añadirLibroDigital(LibroDigital libro) {
+		libros.add(libro);
 	}
 	
 	public Libro obtenerLibroMasAntiguo() {
@@ -32,12 +38,44 @@ public class Libreria {
 	public String obtenerPesoTotal() {
 		Integer peso=0;
 		for (Libro libro : libros) {
-			peso = peso+libro.getPeso();
+			peso += libro.getPeso();
 		}
 		String pesoTotal = "Peso total = " + peso + "gramos";
 		return pesoTotal;
 	}
+	
 	public String obtenerNumPaginasMedio() {
+		Integer totalPaginas = 0;
+		for (Libro libro : libros) {
+			totalPaginas += libro.getNumPaginas();
+		}
 		
+		String mediaPaginas = "Cada libro tiene de media: " + totalPaginas / libros.size() + " páginas";
+		return mediaPaginas;
 	}
+
+	public List<Libro> getLibros() {
+		return libros;
+	}
+
+	public void setLibros(List<Libro> libros) {
+		this.libros = libros;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Integer getNumTelefono() {
+		return numTelefono;
+	}
+
+	public void setNumTelefono(Integer numTelefono) {
+		this.numTelefono = numTelefono;
+	}
+	
 }
