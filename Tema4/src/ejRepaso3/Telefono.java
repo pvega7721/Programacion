@@ -7,7 +7,7 @@ public class Telefono {
 	
 	
 	
-	public Telefono(Integer numero, Boolean enLlamada) {
+	public Telefono(Integer numero) {
 		this.numero = numero;
 		this.enLlamada = false;
 	}

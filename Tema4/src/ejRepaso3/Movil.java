@@ -5,9 +5,8 @@ public class Movil extends Telefono{
 	private LocalizadorGPS  posgps;
 	
 	
-	public Movil(Integer numero, Boolean enLlamada, LocalizadorGPS posgps) {
-		super(numero, enLlamada);
-		
+	public Movil(Integer numero, LocalizadorGPS posgps) {
+		super(numero);
 		this.posgps = posgps;
 	}
 

@@ -3,8 +3,8 @@ package ejRepaso3;
 public class Fijo extends Telefono{
 	private String direccion;
 
-	public Fijo(Integer numero, Boolean enLlamada, String direccion) {
-		super(numero, enLlamada);
+	public Fijo(Integer numero, String direccion) {
+		super(numero);
 		this.direccion = direccion;
 	}
 
