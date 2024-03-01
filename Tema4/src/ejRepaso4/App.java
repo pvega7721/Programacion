@@ -54,7 +54,7 @@ public class App {
 		//llamo a los métodos
 		System.out.println(libreria1.obtenerLibroMasAntiguo());
 		System.out.println(libreria1.obtenerNumPaginasMedio());
-		System.out.println(libreria1.obtenerPesoTotal());;
+		System.out.println(libreria1.obtenerPesoTotal());
 	}
 
 }
