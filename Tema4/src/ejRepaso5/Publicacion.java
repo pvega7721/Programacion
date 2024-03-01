@@ -16,6 +16,7 @@ public class Publicacion {
 		this.titulo = titulo;
 		this.anoPublicacion = anoPublicacion;
 	}
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
