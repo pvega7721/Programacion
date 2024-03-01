@@ -2,7 +2,7 @@ package ejRepaso4;
 
 import java.time.LocalDate;
 
-public class Libro {
+public abstract class Libro {
 	protected String titulo;
 	protected String autor;
 	protected LocalDate fechaEdicion;

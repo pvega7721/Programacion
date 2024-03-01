@@ -48,7 +48,7 @@ public class App {
 		//Los añado a la lista
 		libreria1.añadirLibroFisico(libro1);
 		libreria1.añadirLibroFisico(libro2);
-		libreria1.añadirLibroDigital(libro3);	
+		libreria1.añadirLibroDigital(libro3);
 		libreria1.añadirLibroDigital(libro4);
 		
 		//llamo a los métodos

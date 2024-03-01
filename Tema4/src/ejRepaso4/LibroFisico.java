@@ -3,7 +3,6 @@ package ejRepaso4;
 public class LibroFisico extends Libro{
 	private Integer ancho;
 	private Integer alto;
-	private Integer tamaño;
 
 	public LibroFisico() {
 		
@@ -24,5 +23,6 @@ public class LibroFisico extends Libro{
 	public Integer getTamaño() {
 		return alto*ancho;
 	}
+	
 	
 }
