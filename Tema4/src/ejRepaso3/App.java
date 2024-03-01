@@ -8,7 +8,7 @@ public class App {
 		// TODO Auto-generated method stub
 		
 		//Creo la variable coordenadas para poder añadirla a telefono1.
-		LocalizadorGPS coordenadas = new LocalizadorGPS(new BigDecimal("2.2"), new BigDecimal("3.3"));
+		LocalizadorGPS coordenadas = new LocalizadorGPS(new BigDecimal("23.25436"), new BigDecimal("34.365475"));
 		//Crear telefonos fijo y movil con número y gps/direccion
 		Movil telefono1 = new Movil(654654654, coordenadas);
 		Fijo telefono2 = new Fijo(954954954, "Dirección1");
