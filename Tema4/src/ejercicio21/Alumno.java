@@ -19,7 +19,7 @@ public class Alumno extends Persona{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Double getNota() {
+	public Double getNota() {.
 		return nota;
 	}
 
