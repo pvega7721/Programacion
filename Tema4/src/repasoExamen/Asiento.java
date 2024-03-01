@@ -9,7 +9,7 @@ public class Asiento {
 	private Integer asiento;
 	protected String ubicacion;
 	protected Boolean estaOcupado;
-	protected BigDecimal precioBase;
+	protected static BigDecimal precioBase;
 	
 	public String getUbicacion() {
 		return ubicacion;
@@ -27,7 +27,7 @@ public class Asiento {
 		return precioBase;
 	}
 	public void setPrecioBase(BigDecimal precioBase) {
-		this.precioBase = precioBase;
+		Asiento.precioBase = precioBase;
 	}
 	public Asiento(String ubicacion, Boolean estaOcupado) {
 		this.ubicacion = "Fila: " + fila + "Asiento: " + asiento;
