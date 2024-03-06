@@ -5,8 +5,8 @@ import java.math.RoundingMode;
 import java.util.Objects;
 
 public class Asiento {
-	private Integer fila;
-	private Integer asiento;
+	protected Integer fila;
+	protected String asiento;
 	protected String ubicacion;
 	protected Boolean estaOcupado;
 	protected static BigDecimal precioBase;
@@ -43,7 +43,9 @@ public class Asiento {
 		this.fila = fila;
 	}
 
-	public Asiento(String ubicacion, Boolean estaOcupado) {
+	public Asiento(Integer fila, String asiento) {
+		this.fila = fila;
+		this.asiento = asiento;
 		this.ubicacion = "Fila: " + fila + "Asiento: " + asiento;
 		this.estaOcupado = false;
 	}

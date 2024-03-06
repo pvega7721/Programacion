@@ -18,6 +18,10 @@ public class Avion {
 		this.fechaFabricacion = LocalDate.of(1, 1, 2000);
 	}
 
+	public Avion(String compañia) {
+		this.compañia = compañia;
+	}
+
 	public String getCompañia() {
 		return compañia;
 	}
@@ -48,8 +52,8 @@ public class Avion {
 		return añosAvion;
 	}
 
-	public void añadirAsiento() {
-
+	public void añadirAsiento(Asiento asiento) {
+		listaAsientos.add(asiento);
 	}
 
 	// Devuelve cantidad de asientos que no están libres
