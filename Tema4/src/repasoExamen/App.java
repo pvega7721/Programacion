@@ -12,15 +12,15 @@ public class App {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-		String compañia;
+		String empresa;
 // 		1.
 		do {
 			System.out.println("Introduce la compañía del avión:");
-			compañia = sc.nextLine();
-		} while (compañia.isEmpty() || compañia.startsWith(" "));
+			empresa = sc.nextLine();
+		} while (empresa.isEmpty() || empresa.startsWith(" "));
 //		2.
 		// a.
-		Avion avion1 = new Avion(compañia);
+		Avion avion1 = new Avion(empresa);
 		// b.
 		avion1.setFechaFabricacion(LocalDate.of(2015, Month.NOVEMBER, 23));
 		// c.
