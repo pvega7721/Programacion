@@ -1,4 +1,4 @@
 package repasoExamen;
 
-public class AsientoPrimera extends Asiento{
+public class AsientoPrimera extends Asiento {
 }
