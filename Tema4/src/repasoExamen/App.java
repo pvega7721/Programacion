@@ -50,8 +50,17 @@ public class App {
 		System.out.println(avion1);
 		// c.
 		System.out.println(avion1.getAntiguedad());
+		
 		// d.
 		System.out.println(avion1.getCantidadAsientosOcupados());
+		// e.
+		System.out.println(avion1.getAsientosLibres());
+		// f.
+		System.out.println(avion1.precioMedioVenta());
+		// g.
+		System.out.println(avion1.getAsientoLibreMasBarato());
+		// h.
+		avion1.eliminarAsientosFila(15);
 
 		sc.close();
 	}

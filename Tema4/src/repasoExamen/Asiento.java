@@ -51,7 +51,7 @@ public class Asiento {
 	}
 
 	public Asiento() {
-
+		this.estaOcupado = false;
 	}
 
 	public BigDecimal getPrecioVenta() {
