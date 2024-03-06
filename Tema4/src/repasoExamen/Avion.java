@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Avion {
@@ -116,11 +117,13 @@ public class Avion {
 	}
 
 	public void eliminarAsientosFila(Integer fila) {
-		for (Asiento asiento : listaAsientos) {
-			if (asiento.getFila() == fila) {
-				listaAsientos.remove(asiento);
-			}
-		}
+	    Iterator<Asiento> iterator = listaAsientos.iterator();
+	    while (iterator.hasNext()) {
+	        Asiento asiento = iterator.next();
+	        if (asiento.getFila().equals(fila)) {
+	            iterator.remove();
+	        }
+	    }
 	}
 
 	@Override
