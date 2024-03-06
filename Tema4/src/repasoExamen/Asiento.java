@@ -47,8 +47,9 @@ public class Asiento {
 		this.ubicacion = "Fila: " + fila + "Asiento: " + asiento;
 		this.estaOcupado = false;
 	}
+
 	public Asiento() {
-		
+
 	}
 
 	public BigDecimal getPrecioVenta() {

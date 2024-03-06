@@ -5,7 +5,6 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Avion {
@@ -119,5 +118,5 @@ public class Avion {
 	public String toString() {
 		return "Compañia:" + compañia + ". " + "Fabricacion: " + fechaFabricacion;
 	}
-	
+
 }
