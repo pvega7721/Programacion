@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Avion {
@@ -48,18 +50,32 @@ public class Avion {
 	}
 
 	public void añadirAsiento() {
-		
-	}
-
-	public List<Asiento> getCantidadAsientos() {
 
 	}
 
+	// Devuelve cantidad de asientos que no están libres
+	public Integer getCantidadAsientos() {
+		Integer asientoLibre = 0;
+		for (Asiento asiento : listaAsientos) {
+			if (!asiento.estaOcupado) {
+				asientoLibre++;
+			}
+		}
+		return asientoLibre;
+	}
+
+	// Devuelve una lista con los todos los asientos libres
 	public List<Asiento> getListaAsientosLibres() {
-
+		List<Asiento> asientoLibre = new ArrayList<>();
+		for (Asiento asiento : listaAsientos) {
+			if (!asiento.estaOcupado) {
+				asientoLibre.add(asiento);
+			}
+		}
+		return asientoLibre;
 	}
 
-	public void establecerPrecioBase(BigDecimal Precio) {
+	public void establecerPrecioBaseAsiento(BigDecimal Precio) {
 		Asiento.precioBase = Precio;
 	}
 
@@ -73,14 +89,35 @@ public class Avion {
 		return precioMedio.setScale(2, RoundingMode.HALF_DOWN);
 	}
 
+	// Métodod que comprueba que el asiento esté libre. Si lo está, compara su
+	// precio con el asiento anterior. si es más barato, lo devuelve
 	public Asiento getAsientoLibreMasBarato() {
-		BigDecimal masBarato = BigDecimal.ZERO;
-		// if(getListaAsientosLibres() == null){
-		// return null;
-		// }
+		Asiento masBarato = listaAsientos.get(0);
+		// comparar precio con el resto
+		for (int i = 0; i < listaAsientos.size() - 1; i++) {
+			// Comprueba que el asiento esté libre
+			if (!listaAsientos.get(i).estaOcupado) {
+				// se comparan todas las posiciones de la lista con la posición 0(masBarato), si
+				// es más barato, se iguala a la posición.
+				if (listaAsientos.get(i).getPrecioVenta().compareTo(masBarato.getPrecioVenta()) <= 0) {
+					masBarato = listaAsientos.get(i);
+				}
+			}
+		}
+		return masBarato;
+	}
 
+	public void eliminarAsientosFila(Integer fila) {
 		for (Asiento asiento : listaAsientos) {
-
+			if (asiento.getFila() == fila) {
+				listaAsientos.remove(asiento);
+			}
 		}
 	}
+
+	@Override
+	public String toString() {
+		return "Compañia:" + compañia + ". " + "Fabricacion: " + fechaFabricacion;
+	}
+	
 }

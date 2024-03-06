@@ -35,9 +35,20 @@ public class Asiento {
 		Asiento.precioBase = precioBase;
 	}
 
+	public Integer getFila() {
+		return fila;
+	}
+
+	public void setFila(Integer fila) {
+		this.fila = fila;
+	}
+
 	public Asiento(String ubicacion, Boolean estaOcupado) {
 		this.ubicacion = "Fila: " + fila + "Asiento: " + asiento;
 		this.estaOcupado = false;
+	}
+	public Asiento() {
+		
 	}
 
 	public BigDecimal getPrecioVenta() {
