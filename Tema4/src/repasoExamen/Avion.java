@@ -3,6 +3,7 @@ package repasoExamen;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,13 @@ public class Avion {
 	public Avion(String compañia, LocalDate fechaFabricacion) {
 		super();
 		this.compañia = compañia;
-		this.fechaFabricacion = LocalDate.of(1, 1, 2000);
+		this.fechaFabricacion = LocalDate.of(2000, Month.JANUARY, 1);
+		this.listaAsientos = new ArrayList<>();
 	}
 
 	public Avion(String compañia) {
 		this.compañia = compañia;
+		this.listaAsientos = new ArrayList<>();
 	}
 
 	public String getCompañia() {
@@ -46,10 +49,11 @@ public class Avion {
 		this.listaAsientos = listaAsientos;
 	}
 
-	public Integer getAntiguedad() {
+	public String getAntiguedad() {
 		Period periodo = fechaFabricacion.until(LocalDate.now());
 		Integer añosAvion = periodo.getYears();
-		return añosAvion;
+		String edadAvion = "El avión tiene " + añosAvion + " Años";
+		return edadAvion;
 	}
 
 	public void añadirAsiento(Asiento asiento) {
@@ -57,18 +61,19 @@ public class Avion {
 	}
 
 	// Devuelve cantidad de asientos que no están libres
-	public Integer getCantidadAsientos() {
-		Integer asientoLibre = 0;
+	public Integer getCantidadAsientosOcupados() {
+		Integer asientoOcupado = 0;
 		for (Asiento asiento : listaAsientos) {
 			if (!asiento.estaOcupado) {
-				asientoLibre++;
+				asientoOcupado++;
 			}
 		}
-		return asientoLibre;
+		return asientoOcupado;
 	}
+	
 
 	// Devuelve una lista con los todos los asientos libres
-	public List<Asiento> getListaAsientosLibres() {
+	public List<Asiento> getAsientosLibres() {
 		List<Asiento> asientoLibre = new ArrayList<>();
 		for (Asiento asiento : listaAsientos) {
 			if (!asiento.estaOcupado) {

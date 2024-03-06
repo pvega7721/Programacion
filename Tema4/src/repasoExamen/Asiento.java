@@ -62,9 +62,9 @@ public class Asiento {
 	@Override
 	public String toString() {
 		if (estaOcupado == false) {
-			return "FILA/ASIENTO: " + fila + "/" + asiento + " PVP: " + precioBase + " €" + "LIBRE" + "]";
+			return "FILA/ASIENTO: " + fila + "/" + asiento + " PVP: " + getPrecioVenta() + " €" + "LIBRE" + "]";
 		} else {
-			return "FILA/ASIENTO: " + fila + "/" + asiento + " PVP: " + precioBase + " €" + "Ocupado" + "]";
+			return "FILA/ASIENTO: " + fila + "/" + asiento + " PVP: " + getPrecioVenta() + " €" + "Ocupado" + "]";
 		}
 
 	}

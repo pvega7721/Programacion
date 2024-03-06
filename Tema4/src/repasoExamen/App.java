@@ -3,6 +3,8 @@ package repasoExamen;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -32,15 +34,24 @@ public class App {
 		avion1.añadirAsiento(asiento1);
 		avion1.añadirAsiento(asiento2);
 		avion1.añadirAsiento(primera1);
+
 //		3.
 		BigDecimal precioAsientos = BigDecimal.ZERO;
 		// Preguntamos el precio del asiento hasta que sea mayor a 100
 		do {
 			System.out.println("¿Cuál es el precio base de los asientos?");
 			precioAsientos = sc.nextBigDecimal();
-		} while (Asiento.precioBase.compareTo(new BigDecimal(100)) >= 0);
+			Asiento.precioBase = precioAsientos;
+		} while (Asiento.precioBase.compareTo(new BigDecimal(100)) == -1);
 //		4.
+		// a.
 		avion1.establecerPrecioBaseAsiento(precioAsientos);
+		// b.
+		System.out.println(avion1);
+		// c.
+		System.out.println(avion1.getAntiguedad());
+		// d.
+		System.out.println(avion1.getCantidadAsientosOcupados());
 
 		sc.close();
 	}
