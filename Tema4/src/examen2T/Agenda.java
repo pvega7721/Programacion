@@ -32,6 +32,7 @@ public class Agenda {
 	public List<Cita> getCitasDias(LocalDate fecha) {
 		List<Cita> citasEseDia = new ArrayList<>();
 		for (Cita cita : listaCitas) {
+								//.equals  Está mal
 			if (cita.getFechaCita() == fecha) {
 				citasEseDia.add(cita);
 			}
@@ -54,6 +55,7 @@ public class Agenda {
 	public Boolean tieneCitaProxima(String nombrePaciente) {
 		Boolean tieneCitaProxima = null;
 		for (Cita cita : listaCitas) {
+							//.equals  Está mal
 			if (cita.nombrePaciente == nombrePaciente && cita.fechaCita.isAfter(LocalDate.now())) {
 				tieneCitaProxima = true;
 			} else
@@ -74,6 +76,7 @@ public class Agenda {
 
 	public void facturarCitasPendientes(String nombrePaciente) {
 		for (Cita cita : listaCitas) {
+								//.equals  Está mal
 			if (cita.nombrePaciente == nombrePaciente && cita.fechaCita.isAfter(LocalDate.now())) {
 				cita.facturada = true;
 			}else {
