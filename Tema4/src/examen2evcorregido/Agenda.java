@@ -49,9 +49,8 @@ public class Agenda {
 				suma = suma.add(cita.getImporteFactura());
 			}
 		}
-		DecimalFormat formato = new DecimalFormat("#,###.00 €");
 		//btudo: �para que este formato aqui??? 
-		return formato.format(suma.setScale(2, RoundingMode.HALF_DOWN));
+		return suma.setScale(2, RoundingMode.HALF_DOWN);
 	}
 
 	public Boolean tieneCitaProxima(String nombrePaciente) {

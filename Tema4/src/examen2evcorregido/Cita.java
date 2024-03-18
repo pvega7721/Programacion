@@ -109,4 +109,9 @@ public abstract class Cita {
 		}
 	}
 
+	public boolean getFacturada() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
