@@ -2,6 +2,7 @@ package ejercicio55;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,6 +14,13 @@ public class Evaluacion {
 	
 	Map<String, BigDecimal> notas = new HashMap<>();
 	
+	public Evaluacion(Map<String, BigDecimal> notas) {
+		this.notas = notas;
+	}
+	public Evaluacion() {
+		
+	}
+
 	//paso1
 	public boolean addNota(String dni, BigDecimal nota) {
 		
@@ -85,7 +93,7 @@ public class Evaluacion {
 			while (it.hasNext()) {
 				String dni = it.next();
 				if(notas.get(dni).compareTo(BigDecimal.valueOf(5.0))>=0) {
-					notas.remove(dni);
+					it.remove();
 				}
 			}
 		}
@@ -93,7 +101,20 @@ public class Evaluacion {
 
 		@Override
 		public String toString() {
-			return "Aprobados: \n" + notas + "]";
+			DecimalFormat ft = new DecimalFormat("#.0");
+			String aprobados = "Aprobados: \n";
+			String suspensos = "Suspensos: \n";
+			
+			Set<String> dnis = notas.keySet();
+			for (String dni : dnis) {
+				String linea = "\t" + dni+ " (" + ft.format(notas.get(dni)) + ")\n";
+				if (notas.get(dni).compareTo(BigDecimal.valueOf(5.0)) >=0) {
+					aprobados += linea;
+				} else {
+					suspensos += linea;
+				}
+			}
+			return aprobados + "\n" + suspensos;
 		}
 		
 }

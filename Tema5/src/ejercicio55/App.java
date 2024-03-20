@@ -8,6 +8,7 @@ public class App {
 		// TODO Auto-generated method stub
 //		paso1
 		Evaluacion eva1 = new Evaluacion();
+		
 //		paso2
 		BigDecimal nota1 = new BigDecimal(4.5);
 		eva1.addNota("12345678a", nota1);
@@ -23,13 +24,17 @@ public class App {
 		
 		BigDecimal nota5 = new BigDecimal(6.9);
 		eva1.addNota("12345678e", nota5);
+		System.out.println(eva1);
+		
 //		paso3
 		eva1.addNota("12345678a", nota5);
 		System.out.println(eva1);
+		
 //		paso4
 		eva1.corregirNota("12345678b", nota4);
 		eva1.corregirNota("12345677C", nota2);
 		System.out.println(eva1);
+		
 //		paso5
 		eva1.obtenerNotaAlumno("12345678c");
 		System.out.println(eva1.obtenerNotaMedia());
