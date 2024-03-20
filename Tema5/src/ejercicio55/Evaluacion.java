@@ -83,7 +83,17 @@ public class Evaluacion {
 			Set<String> dnis = notas.keySet();
 			Iterator<String> it = dnis.iterator();
 			while (it.hasNext()) {
-				
+				String dni = it.next();
+				if(notas.get(dni).compareTo(BigDecimal.valueOf(5.0))>=0) {
+					notas.remove(dni);
+				}
 			}
 		}
+	//paso8
+
+		@Override
+		public String toString() {
+			return "Aprobados: \n" + notas + "]";
+		}
+		
 }
