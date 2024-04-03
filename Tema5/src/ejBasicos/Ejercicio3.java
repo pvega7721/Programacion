@@ -1,10 +1,11 @@
 package ejBasicos;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class Ejercicio1 {
+public class Ejercicio3 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -15,7 +16,7 @@ public class Ejercicio1 {
 		try {
 
 			while (true) {
-				System.out.println("Introduce un número entero (-1 para parar)");
+				System.out.println("Introduce un número");
 				num = sc.nextInt();
 
 				if (num != -1) {
@@ -30,6 +31,8 @@ public class Ejercicio1 {
 				System.out.println(integer);
 			}
 
+		} catch (InputMismatchException e) {
+			System.out.println("Has introducido un caracter inválido");
 		} finally {
 			sc.close();
 			System.out.println("Scanner cerrado correctamente");
