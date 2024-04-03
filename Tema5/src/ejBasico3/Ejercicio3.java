@@ -1,4 +1,4 @@
-package ejBasicos;
+package ejBasico3;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
