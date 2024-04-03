@@ -1,14 +1,11 @@
 package ejBasico3;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SacoNumeros {
-	private List<Integer> listaNumeros;
+	public List<Integer> listaNumeros = new ArrayList<>();
 
-	// Constructor inicializando la lista
-	public SacoNumeros(List<Integer> listaNumeros) {
-		this.listaNumeros = listaNumeros;
-	}
 
 	// Método que añade un numero a la lista
 	public void addNumero(Integer numero) {
@@ -17,13 +14,13 @@ public class SacoNumeros {
 
 	// Método que recibe un número (Que será la posición deseada) y devuelve el
 	// número que esté en dicha posición
-	public Integer getListaNumeros(Integer numero) {
-		return listaNumeros.get(numero);
+	public void getNumero(Integer posicion) {
+		System.out.println(listaNumeros.get(posicion));
 	}
 
 	@Override
 	public String toString() {
-		return "SacoNumeros [listaNumeros=" + listaNumeros + "]";
+		return "Números: " + listaNumeros;
 	}
 
 }
