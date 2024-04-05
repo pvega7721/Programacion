@@ -1,4 +1,3 @@
-
 package ejBasico5;
 
 import java.util.InputMismatchException;
@@ -47,7 +46,7 @@ public class App {
 						break;
 					}
 				} catch (IndexOutOfBoundsException e) {
-					System.out.println("En la posición " + num +" se encuentra: " + null);
+					System.out.println("En la posición " + num + " se encuentra: " + null);
 					sc.nextLine();
 				}
 			}
