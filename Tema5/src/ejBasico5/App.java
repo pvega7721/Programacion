@@ -50,6 +50,7 @@ public class App {
 					sc.nextLine();
 				}
 			}
+			System.out.println("La división es: " + lista.division());
 
 		} finally {
 			System.out.println("Programa cerrado");

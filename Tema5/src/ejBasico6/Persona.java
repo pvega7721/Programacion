@@ -17,11 +17,15 @@ public class Persona {
 
 	public void setGenero(String genero) {
 		try {
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("Introduce el género");
+			if (!genero.equalsIgnoreCase("h") || !genero.equalsIgnoreCase("m")) {
+				throw new ParametroIncorrectoException("Género incorrecto");
+			} else {
+				this.genero = genero;
+			}
+		} catch (ParametroIncorrectoException e) {
+			System.out.println(e.getMessage());
 		}
-		this.genero = genero;
 	}
 
 	public BigDecimal getAltura() {

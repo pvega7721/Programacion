@@ -20,13 +20,18 @@ public class SacoNumeros {
 	}
 
 	public BigDecimal division() {
-		BigDecimal division = BigDecimal.ZERO;
-		for (int i = 1; i < listaNumeros.size(); i++) {
-			BigDecimal posicion = new BigDecimal(listaNumeros.get(0));
-			BigDecimal iterador = new BigDecimal(listaNumeros.get(i));
-			division = posicion.divide(iterador, 2, RoundingMode.HALF_UP);
+		try {
+			BigDecimal resultado = new BigDecimal(this.listaNumeros.get(0));
+			for (int i = 1; i < listaNumeros.size(); i++) {
+				BigDecimal siguiente = new BigDecimal(listaNumeros.get(i));
+				resultado = resultado.divide(siguiente, 2, RoundingMode.HALF_UP);
+			}
+			return resultado;
+		} catch (ArithmeticException e) {
+			return BigDecimal.ZERO;
+		} catch (IndexOutOfBoundsException e) {
+			return BigDecimal.ZERO;
 		}
-		return division;
 	}
 
 	@Override
