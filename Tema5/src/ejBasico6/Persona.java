@@ -33,7 +33,17 @@ public class Persona {
 	}
 
 	public void setAltura(BigDecimal altura) {
-		this.altura = altura;
+		try {
+			System.out.println("Introduce la altura");
+			if (!genero.equalsIgnoreCase("h") || !genero.equalsIgnoreCase("m")) {
+				throw new ParametroIncorrectoException("Altura incorrecta");
+			} else {
+				this.altura = altura;
+			}
+		} catch (ParametroIncorrectoException e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 
 	@Override
