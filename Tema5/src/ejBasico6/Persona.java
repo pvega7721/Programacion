@@ -10,6 +10,9 @@ public class Persona {
 		this.genero = genero;
 		this.altura = altura;
 	}
+	public Persona() {
+		
+	}
 
 	public String getGenero() {
 		return genero;
@@ -35,7 +38,7 @@ public class Persona {
 	public void setAltura(BigDecimal altura) {
 		try {
 			System.out.println("Introduce la altura");
-			if (!genero.equalsIgnoreCase("h") || !genero.equalsIgnoreCase("m")) {
+			if (altura.compareTo(BigDecimal.ZERO) > 0 && (altura.compareTo(new BigDecimal(3))) < 0) {
 				throw new ParametroIncorrectoException("Altura incorrecta");
 			} else {
 				this.altura = altura;
