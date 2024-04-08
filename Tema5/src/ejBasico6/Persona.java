@@ -10,8 +10,9 @@ public class Persona {
 		this.genero = genero;
 		this.altura = altura;
 	}
+
 	public Persona() {
-		
+
 	}
 
 	public String getGenero() {
@@ -20,11 +21,10 @@ public class Persona {
 
 	public void setGenero(String genero) {
 		try {
-			System.out.println("Introduce el género");
-			if (!genero.equalsIgnoreCase("h") || !genero.equalsIgnoreCase("m")) {
-				throw new ParametroIncorrectoException("Género incorrecto");
-			} else {
+			if (genero.equalsIgnoreCase("h") || genero.equalsIgnoreCase("m")) {
 				this.genero = genero;
+			} else {
+				throw new ParametroIncorrectoException("Género incorrecto");
 			}
 		} catch (ParametroIncorrectoException e) {
 			System.out.println(e.getMessage());
@@ -37,8 +37,7 @@ public class Persona {
 
 	public void setAltura(BigDecimal altura) {
 		try {
-			System.out.println("Introduce la altura");
-			if (altura.compareTo(BigDecimal.ZERO) > 0 && (altura.compareTo(new BigDecimal(3))) < 0) {
+			if (altura.compareTo(BigDecimal.ZERO) <= 0 || altura.compareTo(new BigDecimal(3)) >= 0) {
 				throw new ParametroIncorrectoException("Altura incorrecta");
 			} else {
 				this.altura = altura;
@@ -46,7 +45,7 @@ public class Persona {
 		} catch (ParametroIncorrectoException e) {
 			System.out.println(e.getMessage());
 		}
-		
+
 	}
 
 	@Override
