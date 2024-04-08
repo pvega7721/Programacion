@@ -77,20 +77,6 @@ public class Alumno extends Persona{
 
 	public Boolean validarDNI() {
 		return(dni!=null && dni.length()==9);
-	
-	
-	
-	Pattern patron = Pattern.compile("[0-9]{7,8}[A-Z a-z]");
-	Matcher match = patron.matcher(dni);
-	if(match.matches()) {
-	 return true;
-	}
-	else {
-	 return false;
-	} 
-
 	}
 	
-}
-
 }

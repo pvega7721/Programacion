@@ -30,5 +30,5 @@ public class Curso {
 	public String toString() {
 		return "Curso [identificador=" + identificador + ", descripcion=" + descripcion + "]";
 	}
-	
+}
 }

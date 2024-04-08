@@ -1,0 +1,14 @@
+package ejercicios_de_repaso;
+
+public class Ejercicio10 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+		
+		
+		
+	}
+
+}
