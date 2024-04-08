@@ -20,7 +20,7 @@ public class App {
 		persona1.setGenero(genero);
 		
 		System.out.println(persona1);
-		
+		System.out.println("Hola");
 		
 		sc.close();
 	}
