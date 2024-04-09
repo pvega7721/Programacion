@@ -1,4 +1,4 @@
-package ejBasico7;
+package Tema5.src.ejBasico7;
 
 public class Persona {
 
