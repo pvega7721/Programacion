@@ -1,0 +1,42 @@
+package repasoT2;
+
+import java.util.Scanner;
+
+public class Ej4 {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("¿Cuántas unidades son?");
+		double unidades = sc.nextInt();
+		System.out.println("¿Cuál es el precio por unidad?");
+		double precio = sc.nextInt();
+		double subtotal = precio*unidades;
+		double total;
+		
+		if (unidades<10) {
+			total = subtotal;
+			System.out.println("-Subtotal = " + precio + "X" + unidades + "=" + subtotal);
+			System.out.println("-Descuento = 10% de" + subtotal + "=" + subtotal*0.1);
+			System.out.println("-Total= " + subtotal + "-" + total );
+		}
+		else if (unidades>10 && unidades<24) {
+			total = subtotal -= 0.1;
+			System.out.println("-Subtotal = " + precio + "X" + unidades + "=" + subtotal);
+			System.out.println("-Descuento = 10% de" + subtotal + "=" + subtotal*0.1);
+			System.out.println("-Total= " + subtotal + "-" + total );
+		}
+		else if (unidades>24 && unidades<100) {
+			total = subtotal -= 0.2;
+		}
+		else if (unidades>100) {
+			total = subtotal -= 0.4;
+		}
+		
+		
+		
+	}
+
+}

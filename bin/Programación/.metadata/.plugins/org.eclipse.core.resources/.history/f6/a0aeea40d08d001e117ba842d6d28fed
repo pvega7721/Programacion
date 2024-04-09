@@ -1,0 +1,11 @@
+package repasoT2;
+
+public class Ej2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		Scanner sc = new Scanner(System.in);
+	}
+
+}
