@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class OpenConnection {
 
 	public Connection getNetworkConnection() throws SQLException {
-        String usuario = "pablo";
+        String usuario = "programacion";
         String password = "pvega7721";
 
         String url = "jdbc:oracle:thin:@localhost:1521:XE";
