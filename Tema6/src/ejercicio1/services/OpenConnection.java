@@ -7,11 +7,11 @@ import java.sql.SQLException;
 public class OpenConnection {
 
 	public Connection getNetworkConnection() throws SQLException {
-        String usuario = "root";
+        String usuario = "pablo";
         String password = "pvega7721";
 
-        String url = "jdbc:mysql://localhost:3306/Programacion";
-        String driverClass = "com.mysql.jbdc.Driver";
+        String url = "jdbc:oracle:thin:@localhost:1521:XE";
+        String driverClass = "oracle.jdbc.driver.OracleDriver";
 
         try {
             Class.forName(driverClass);
