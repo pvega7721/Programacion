@@ -1,4 +1,4 @@
-package Tema5.src.ejBasico7;
+package ejBasico7;
 
 import java.math.BigDecimal;
 import java.util.HashSet;

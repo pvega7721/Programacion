@@ -1,4 +1,4 @@
-package ejBasico6;
+package Tema5.src.ejBasico6;
 
 import java.math.BigDecimal;
 
