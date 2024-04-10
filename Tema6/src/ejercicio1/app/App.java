@@ -1,20 +1,34 @@
 package ejercicio1.app;
 
 import java.sql.SQLException;
-
-import ejercicio1.services.OpenConnection;
+import java.util.Scanner;
+import ejercicio1.Modelo.Persona;
+import ejercicio1.services.PersonasService;
 
 public class App {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		OpenConnection con = new OpenConnection();
 		
+		PersonasService service = new PersonasService();
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Indica el DNI de la persona");
+		String dni = sc.nextLine();
+
 		try {
-			System.out.println(con.getNetworkConnection());
+			Persona p = service.consultarPersona(dni);
+
+			if (p == null) {
+				System.out.println("No exste persona con los datos solicitados");
+			} else {
+				System.out.println(p);
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Excepción en mail: " + e.getMessage());
+		} finally {
+			sc.close();
 		}
 	}
 

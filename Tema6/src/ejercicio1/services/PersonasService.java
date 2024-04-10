@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import ejercicio1.Modelo.Persona;
 
 public class PersonasService {
@@ -21,10 +20,10 @@ public class PersonasService {
 		try {
 			conn = openConn.getNetworkConnection();
 			stmt = conn.createStatement();
+			System.out.println(dni);
 			String sql = "SELECT * FROM personas WHERE DNI = '" + dni + "'";
 			System.out.println(sql);
 			rs = stmt.executeQuery(sql);
-
 			if (rs.next()) {
 				return getPersonaFromResultSet(rs);
 			} else {
