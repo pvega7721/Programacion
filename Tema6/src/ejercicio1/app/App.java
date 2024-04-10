@@ -16,7 +16,6 @@ public class App {
 
 		System.out.println("Indica el DNI de la persona");
 		String dni = sc.nextLine();
-
 		try {
 			Persona p = service.consultarPersona(dni);
 
