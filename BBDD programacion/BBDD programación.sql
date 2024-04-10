@@ -1,0 +1,8 @@
+CREATE TABLE personas (
+ DNI varchar2(50) NOT NULL,
+ NOMBRE varchar2(50) NOT NULL,
+ APELLIDOS varchar2(100) NOT NULL,
+ FECHA_NACIMIENTO DATE DEFAULT NULL,
+ PRIMARY KEY (DNI)
+); 
+insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678b', 'Pablo', 'Vega Flores', '02/04/2005')
