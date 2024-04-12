@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import ejercicio1.Modelo.Persona;
+import java.util.ArrayList;
+import java.util.List;
+
+import ejercicio2.Modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
@@ -26,6 +29,22 @@ public class PersonasService {
 			} else {
 				return null;
 			}
+		}
+	}
+
+	public List<Persona> buscarPersonas(String filtro) throws SQLException {
+		ResultSet rs = null;
+		List<Persona> personas = new ArrayList<>();
+		try (Connection conn = openConn.getNetworkConnection();
+				Statement stmt = conn.createStatement()) {
+			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE = '" + filtro + "' OR APELLIDOS = '" + filtro + "'";
+			rs = stmt.executeQuery(sql);
+			
+			while (rs.next()) {
+				Persona p1 = getPersonaFromResultSet(rs);
+				personas.add(p1);
+			}
+			return personas;
 		}
 	}
 
