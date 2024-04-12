@@ -3,8 +3,8 @@ package ejercicio2.app;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
-import ejercicio1.Modelo.Persona;
-import ejercicio1.services.PersonasService;
+import ejercicio2.Modelo.Persona;
+import ejercicio2.services.PersonasService;
 
 public class App {
 
@@ -14,17 +14,17 @@ public class App {
 		PersonasService service = new PersonasService();
 
 		Scanner sc = new Scanner(System.in);
-		/*
-		 * System.out.println("Indica el DNI de la persona"); String dni =
-		 * sc.nextLine();
-		 * 
-		 * try { Persona p = service.consultarPersona(dni);
-		 * 
-		 * if (p == null) {
-		 * System.out.println("No exste persona con los datos solicitados"); } else {
-		 * System.out.println(p); } } catch (SQLException e) {
-		 * System.out.println("Excepción en mail: " + e.getMessage()); }
-		 */
+		
+		  System.out.println("Indica el DNI de la persona"); String dni =
+		  sc.nextLine();
+		 
+		  try { Persona p = service.consultarPersona(dni);
+		  
+		  if (p == null) {
+		  System.out.println("No exste persona con los datos solicitados"); } else {
+		 System.out.println(p); } } catch (SQLException e) {
+		  System.out.println("Excepción en mail: " + e.getMessage()); }
+		 
 		System.out.println("Indica el nombre o apellido que buscas");
 		String nombreOApellido = sc.nextLine();
 		try {
@@ -32,7 +32,9 @@ public class App {
 			if (p == null) {
 				System.out.println("No exste persona con los datos solicitados");
 			} else {
-				System.out.println(p);
+				for(Persona per : p) {
+					System.out.println(per);
+				}
 			}
 		} catch (SQLException e) {
 			System.out.println("Excepción en mail: " + e.getMessage());
