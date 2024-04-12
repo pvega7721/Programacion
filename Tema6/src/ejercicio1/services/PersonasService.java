@@ -36,14 +36,16 @@ public class PersonasService {
 		ResultSet rs = null;
 		List<Persona> Personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '" + filtro + "' OR APELLIDOS LIKE '" + filtro;
+			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '" + filtro + "' OR APELLIDOS LIKE '" + filtro + "'";
 			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				Personas.add(getPersonaFromResultSet(rs));
-				return Personas;
-			} else {
-				return null;
-			}
+			do {
+				if (rs.next()) {
+					Personas.add(getPersonaFromResultSet(rs));
+					return Personas;
+				} else {
+					return null;
+				}
+			} while (rs.next());
 		}
 	}
 

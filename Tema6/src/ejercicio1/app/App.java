@@ -14,9 +14,10 @@ public class App {
 		PersonasService service = new PersonasService();
 
 		Scanner sc = new Scanner(System.in);
-
+		/*
 		System.out.println("Indica el DNI de la persona");
 		String dni = sc.nextLine();
+		
 		try {
 			Persona p = service.consultarPersona(dni);
 
@@ -28,7 +29,7 @@ public class App {
 		} catch (SQLException e) {
 			System.out.println("Excepción en mail: " + e.getMessage());
 		} 
-		
+		*/
 		System.out.println("Indica el nombre o apellido que buscas");
 		String nombreOApellido = sc.nextLine();
 		try {
