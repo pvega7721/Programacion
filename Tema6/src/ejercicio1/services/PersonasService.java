@@ -14,12 +14,9 @@ public class PersonasService {
 	}
 
 	public Persona consultarPersona(String dni) throws SQLException {
-		Connection conn = null;
-		Statement stmt = null;
+
 		ResultSet rs = null;
-		try {
-			conn = openConn.getNetworkConnection();
-			stmt = conn.createStatement();
+		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			System.out.println(dni);
 			String sql = "SELECT * FROM personas WHERE DNI = '" + dni + "'";
 			System.out.println(sql);
@@ -28,14 +25,6 @@ public class PersonasService {
 				return getPersonaFromResultSet(rs);
 			} else {
 				return null;
-			}
-
-		} finally {
-			if (stmt != null) {
-				stmt.close();
-			}
-			if (conn != null) {
-				conn.close();
 			}
 		}
 	}

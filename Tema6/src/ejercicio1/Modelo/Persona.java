@@ -1,6 +1,7 @@
 package ejercicio1.Modelo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Persona {
 	private String DNI;
@@ -42,8 +43,9 @@ public class Persona {
 
 	@Override
 	public String toString() {
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyy");
 		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
-				+ fechaNacimiento + "]";
+				+ formato.format(fechaNacimiento) + "]";
 	}
 	
 }
