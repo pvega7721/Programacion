@@ -1,12 +1,9 @@
-package ejercicio1.services;
+package ejercicio2.services;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
 import ejercicio1.Modelo.Persona;
 
 public class PersonasService {
@@ -29,23 +26,6 @@ public class PersonasService {
 			} else {
 				return null;
 			}
-		}
-	}
-
-	public List<Persona> buscarPersonas(String filtro) throws SQLException {
-		ResultSet rs = null;
-		List<Persona> Personas = new ArrayList<>();
-		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '" + filtro + "' OR APELLIDOS LIKE '" + filtro + "'";
-			rs = stmt.executeQuery(sql);
-			do {
-				if (rs.next()) {
-					Personas.add(getPersonaFromResultSet(rs));
-					return Personas;
-				} else {
-					return null;
-				}
-			} while (rs.next());
 		}
 	}
 
