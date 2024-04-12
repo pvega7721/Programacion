@@ -38,7 +38,7 @@ public class PersonasService {
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '" + filtro + "' OR APELLIDOS LIKE '" + filtro + "'";
 			rs = stmt.executeQuery(sql);
-
+			
 			while (rs.next()) {
 				Persona p1 = getPersonaFromResultSet(rs);
 				personas.add(p1);
