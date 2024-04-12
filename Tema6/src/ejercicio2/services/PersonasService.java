@@ -35,11 +35,10 @@ public class PersonasService {
 	public List<Persona> buscarPersonas(String filtro) throws SQLException {
 		ResultSet rs = null;
 		List<Persona> personas = new ArrayList<>();
-		try (Connection conn = openConn.getNetworkConnection();
-				Statement stmt = conn.createStatement()) {
+		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE = '" + filtro + "' OR APELLIDOS = '" + filtro + "'";
 			rs = stmt.executeQuery(sql);
-			
+
 			while (rs.next()) {
 				Persona p1 = getPersonaFromResultSet(rs);
 				personas.add(p1);

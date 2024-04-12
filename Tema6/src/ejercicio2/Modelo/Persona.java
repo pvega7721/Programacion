@@ -47,5 +47,5 @@ public class Persona {
 		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
 				+ formato.format(fechaNacimiento) + "]";
 	}
-	
+
 }
