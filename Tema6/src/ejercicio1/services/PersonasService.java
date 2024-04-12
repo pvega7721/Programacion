@@ -34,18 +34,18 @@ public class PersonasService {
 
 	public List<Persona> buscarPersonas(String filtro) throws SQLException {
 		ResultSet rs = null;
-		List<Persona> Personas = new ArrayList<>();
+		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '" + filtro + "' OR APELLIDOS LIKE '" + filtro + "'";
 			rs = stmt.executeQuery(sql);
-			do {
-				if (rs.next()) {
-					Personas.add(getPersonaFromResultSet(rs));
-					return Personas;
-				} else {
-					return null;
-				}
-			} while (rs.next());
+			
+			while (rs.next()) {
+				
+				Persona p1 = getPersonaFromResultSet(rs);
+				personas.add(p1);
+					
+			}
+			return personas;
 		}
 	}
 
