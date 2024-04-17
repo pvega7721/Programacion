@@ -1,4 +1,4 @@
-package ejercicio2.services;
+package ejercicio3.services;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

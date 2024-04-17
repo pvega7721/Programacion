@@ -1,4 +1,4 @@
-package ejercicio1.Modelo;
+package ejercicio1.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
