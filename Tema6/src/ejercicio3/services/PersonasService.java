@@ -46,6 +46,9 @@ public class PersonasService {
 			return personas;
 		}
 	}
+	public void insertarPersona(Persona p) throws SQLException {
+		
+	}
 
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {
 		Persona p = new Persona();
