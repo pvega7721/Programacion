@@ -32,14 +32,14 @@ public class App {
 		}
 
 		System.out.println("Indica el nombre o apellido que buscas");
-		String nombreOApellido ="";
+		String nombreOApellido = "";
 		do {
 			nombreOApellido = sc.nextLine();
-		}while(nombreOApellido.isEmpty());
-		
+		} while (nombreOApellido.isEmpty());
+
 		try {
 			List<Persona> p = service.buscarPersonas(nombreOApellido);
-			if (p== null) {
+			if (p == null) {
 				System.out.println("No exste persona con los datos solicitados");
 			} else {
 				for (Persona per : p) {
@@ -51,6 +51,7 @@ public class App {
 		} finally {
 			sc.close();
 		}
+
 	}
 
 }

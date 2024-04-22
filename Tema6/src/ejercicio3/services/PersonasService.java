@@ -1,6 +1,7 @@
 package ejercicio3.services;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -38,6 +39,7 @@ public class PersonasService {
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%" + filtro + "%' OR APELLIDOS LIKE '%" + filtro
 					+ "%'";
+			System.out.println(sql);
 			rs = stmt.executeQuery(sql);
 			if (personas.isEmpty()) {
 				return null;
@@ -52,7 +54,10 @@ public class PersonasService {
 	}
 
 	public void insertarPersona(Persona p) throws SQLException {
+		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+		}
 	}
 
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {
