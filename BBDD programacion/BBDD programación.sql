@@ -10,7 +10,7 @@ insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('1234567
 insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678a', 'Pablo', 'Aranda', '02/04/2005');
 insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678c', 'Juan', 'Lopez', '02/04/2005');
 insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678d', 'Juan', 'Perez', '02/04/2005');
-insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678e', 'jose', 'Lopez', '02/04/2005');
+insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678e', 'Jose', 'Lopez', '02/04/2005');
 insert into personas (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('12345678f', 'David', 'Suarez', '02/04/2005');
 
 select * from personas where nombre  = 'Pablo' or apellidos = 'Pablo';
