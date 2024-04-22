@@ -1,4 +1,4 @@
-package ejercicio2.services;
+package ejercicio3.services;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -45,6 +45,9 @@ public class PersonasService {
 			}
 			return personas;
 		}
+	}
+	public void insertarPersona(Persona p) throws SQLException {
+		
 	}
 
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {

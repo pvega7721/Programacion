@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import ejercicio1.Modelo.Persona;
+import ejercicio1.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
