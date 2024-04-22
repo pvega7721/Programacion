@@ -2,7 +2,8 @@ package ejercicio1.app;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-import ejercicio1.Modelo.Persona;
+
+import ejercicio1.modelo.Persona;
 import ejercicio1.services.PersonasService;
 
 public class App {

@@ -1,4 +1,4 @@
-package ejercicio2.Modelo;
+package ejercicio2.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -47,5 +47,5 @@ public class Persona {
 		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", apellidos=" + apellidos + ", fechaNacimiento="
 				+ formato.format(fechaNacimiento) + "]";
 	}
-	
+
 }

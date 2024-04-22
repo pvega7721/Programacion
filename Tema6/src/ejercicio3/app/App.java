@@ -1,4 +1,4 @@
-package ejercicio2.app;
+package ejercicio3.app;
 
 import java.sql.SQLException;
 import java.util.List;
