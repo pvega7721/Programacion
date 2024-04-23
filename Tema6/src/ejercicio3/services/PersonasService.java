@@ -1,13 +1,14 @@
 package ejercicio3.services;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ejercicio2.modelo.Persona;
+import ejercicio3.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
@@ -36,18 +37,27 @@ public class PersonasService {
 		ResultSet rs = null;
 		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE = '" + filtro + "' OR APELLIDOS = '" + filtro + "'";
+			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%" + filtro + "%' OR APELLIDOS LIKE '%" + filtro
+					+ "%'";
+			System.out.println(sql);
 			rs = stmt.executeQuery(sql);
-
-			while (rs.next()) {
-				Persona p1 = getPersonaFromResultSet(rs);
-				personas.add(p1);
+			if (personas.isEmpty()) {
+				return null;
+			} else {
+				while (rs.next()) {
+					Persona p1 = getPersonaFromResultSet(rs);
+					personas.add(p1);
+				}
+				return personas;
 			}
-			return personas;
 		}
 	}
+
 	public void insertarPersona(Persona p) throws SQLException {
-		
+		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+		}
 	}
 
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {

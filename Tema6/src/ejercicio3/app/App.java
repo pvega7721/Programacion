@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import ejercicio2.modelo.Persona;
-import ejercicio2.services.PersonasService;
+import ejercicio3.modelo.Persona;
+import ejercicio3.services.PersonasService;
 
 public class App {
 
@@ -32,7 +32,11 @@ public class App {
 		}
 
 		System.out.println("Indica el nombre o apellido que buscas");
-		String nombreOApellido = sc.nextLine();
+		String nombreOApellido = "";
+		do {
+			nombreOApellido = sc.nextLine();
+		} while (nombreOApellido.isEmpty());
+
 		try {
 			List<Persona> p = service.buscarPersonas(nombreOApellido);
 			if (p == null) {
@@ -47,6 +51,7 @@ public class App {
 		} finally {
 			sc.close();
 		}
+
 	}
 
 }
