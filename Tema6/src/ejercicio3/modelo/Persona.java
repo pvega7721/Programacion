@@ -41,6 +41,13 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public Boolean validar() throws DatosIncompletosException {
+		if (DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento.is) {
+			throw new DatosIncompletosException();
+		}
+		return true;
+	}
+
 	@Override
 	public String toString() {
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyy");
