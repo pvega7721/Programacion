@@ -1,4 +1,4 @@
-package ejercicio3.services;
+package ejercicio4.services;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,8 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-import ejercicio3.modelo.Persona;
+import ejercicio4.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
