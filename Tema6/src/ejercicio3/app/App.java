@@ -1,6 +1,8 @@
 package ejercicio3.app;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 import java.util.Scanner;
 
@@ -51,7 +53,17 @@ public class App {
 		} finally {
 			sc.close();
 		}
+<<<<<<< HEAD
+		Persona Mario = new Persona();
+		Mario.setDNI("12345678z");
+		Mario.setNombre("Mario");
+		Mario.setApellidos("Sánchez");
+		Mario.setFechaNacimiento(LocalDate.of(2003, Month.JULY, 3));
 
+		service.insertarPersona(Mario);
+=======
+
+>>>>>>> branch 'main' of https://github.com/pvega7721/Programacion.git
 	}
 
 }

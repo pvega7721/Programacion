@@ -53,10 +53,29 @@ public class PersonasService {
 		}
 	}
 
+<<<<<<< HEAD
+	// Ejercicio3
+=======
+>>>>>>> branch 'main' of https://github.com/pvega7721/Programacion.git
 	public void insertarPersona(Persona p) throws SQLException {
+<<<<<<< HEAD
+		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
+			String sql = "INSERT INTO PERSONAS (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('" + p.getDNI()
+					+ "', '" + p.getNombre() + "', '" + p.getApellidos() + "', '" + p.getFechaNacimiento() + "')";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("Persona insertada correctamente");
+			} else {
+				System.out.println("Persona no insertada");
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+=======
 		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
+>>>>>>> branch 'main' of https://github.com/pvega7721/Programacion.git
 		}
 	}
 
