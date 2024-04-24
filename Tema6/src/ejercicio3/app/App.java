@@ -1,6 +1,7 @@
 package ejercicio3.app;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,7 +10,7 @@ import ejercicio3.services.PersonasService;
 
 public class App {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 
 		PersonasService service = new PersonasService();
@@ -52,6 +53,13 @@ public class App {
 			sc.close();
 		}
 
+		Persona Julio = new Persona();
+		Julio.setDNI("12345678N");
+		Julio.setNombre("Julio");
+		Julio.setApellidos("Lopez");
+		Julio.setFechaNacimiento(LocalDate.of(2001, 10, 4));
+		service.insertarPersona(Julio);
+		
 	}
 
 }
