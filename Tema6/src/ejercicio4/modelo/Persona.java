@@ -1,9 +1,9 @@
-package ejercicio3.modelo;
+package ejercicio4.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import ejercicio3.services.DatosIncompletosException;
+import ejercicio4.services.DatosIncompletosException;
 
 public class Persona {
 	private String DNI;
@@ -44,9 +44,9 @@ public class Persona {
 	}
 
 	public Boolean validar() throws DatosIncompletosException {
-		if (DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento == null) 
+		if (DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento == null)
 			throw new DatosIncompletosException();
-		
+
 		return true;
 	}
 
