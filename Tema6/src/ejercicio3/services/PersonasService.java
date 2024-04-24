@@ -1,6 +1,7 @@
 package ejercicio3.services;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,8 +47,22 @@ public class PersonasService {
 			return personas;
 		}
 	}
+
+	// Ejercicio3
 	public void insertarPersona(Persona p) throws SQLException {
-		
+		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
+			String sql = "INSERT INTO PERSONAS (DNI, NOMBRE, APELLIDOS, FECHA_NACIMIENTO) values ('" + p.getDNI()
+					+ "', '" + p.getNombre() + "', '" + p.getApellidos() + "', '" + p.getFechaNacimiento() + "')";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			if (pstmt.executeUpdate() == 1) {
+				System.out.println("Persona insertada correctamente");
+			} else {
+				System.out.println("Persona no insertada");
+			}
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {
