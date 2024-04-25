@@ -40,8 +40,8 @@ public class PersonasService {
 			rs = stmt.executeQuery(sql);
 
 			while (rs.next()) {
-				Persona p1 = getPersonaFromResultSet(rs);
-				personas.add(p1);
+				System.out.println(sql);
+				personas.add(getPersonaFromResultSet(rs));
 			}
 			return personas;
 		}

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import ej2Repaso.modelo.Persona;
@@ -16,6 +18,37 @@ public class PersonasService {
 	}
 
 	Scanner sc = new Scanner(System.in);
+
+	public List<Persona> buscarPersonas() throws SQLException {
+		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE %?% OR APELLIDOS LIKE %?%;";
+		List<Persona> personas = new ArrayList<>();
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			System.out.println("Introduce el nombre o apellido buscados");
+			String filtro = sc.nextLine();
+
+			stmt.setString(1, filtro);
+			stmt.setString(2, filtro);
+
+			ResultSet rs = stmt.executeQuery();
+
+			try {
+				// Mientas haya resultados, los añade a la lista e imprime la consulta
+				while (rs.next()) {
+					System.out.println(sql);
+					personas.add(getPersonaFromResultSet(rs));
+				}
+				return personas;
+
+			} finally {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+			return null;
+		}
+	}
 
 	public Persona consultarPersona() throws SQLException {
 		String sql = "SELECT * FROM PERSONAS WHERE DNI = ?";
@@ -44,11 +77,11 @@ public class PersonasService {
 				} else {
 					return null;
 				}
-			}finally {
+			} finally {
 				rs.close();
 			}
 
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			System.err.println("Error al acceder a la base de datos");
 			return null;
 		}

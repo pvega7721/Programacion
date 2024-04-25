@@ -43,7 +43,7 @@ public class Persona {
 
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", npellidos=" + apellidos + ", fechaNacimiento="
+		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + apellidos + ", fechaNacimiento="
 				+ format.format(fechaNacimiento) + "]";
 	}
 
