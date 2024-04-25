@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,9 +19,9 @@ public class App {
 		PersonasService service = new PersonasService();
 
 		Scanner sc = new Scanner(System.in);
-
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		
 		Integer opcion;
-
 		do {
 			System.out.println("¿Qué quieres hacer?");
 			System.out.println("Escribe 1 para consultar una persona");
@@ -28,6 +29,7 @@ public class App {
 			System.out.println("Escribe 3 para añadir una nueva persona");
 			System.out.println("Escribe 4 para actualizar persona");
 			System.out.println("Escribe 5 para borrar una persona");
+			System.out.println("Escribe 6 para añadir una lista");
 			System.out.println("Escribe 0 para salir");
 
 			opcion = sc.nextInt();
@@ -88,7 +90,7 @@ public class App {
 
 				System.out.println("¿Cuál es su fecha de nacimiento?");
 				String fecha = sc.nextLine();
-				DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				
 
 				try {
 					LocalDate fechaNacimiento = LocalDate.parse(fecha, format);
@@ -115,7 +117,6 @@ public class App {
 
 				System.out.println("¿Cuál es su fecha de nacimiento?");
 				String fecha = sc.nextLine();
-				DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 				try {
 					LocalDate fechaNacimiento = LocalDate.parse(fecha, format);
@@ -136,6 +137,34 @@ public class App {
 				service.borrarPersona(dni);
 				break;
 			}
+			case 6:{
+				sc.nextLine();
+				List<Persona> personas = new ArrayList<>();
+				
+				System.out.println("¿Cuántas personas quieres añadir a la lista?");
+				Integer nPersonas = sc.nextInt();
+				
+				for (int i = 0; i < nPersonas; i++) {
+					Persona p1 = new Persona();
+					sc.nextLine();
+					System.out.println("Introduce el nombre de la persona");
+					p1.setNombre(sc.nextLine());
+					
+					System.out.println("Introduce el apellido de la persona");
+					p1.setApellidos(sc.nextLine());
+					
+					System.out.println("Introduce el DNI");
+					p1.setDNI(sc.nextLine());
+					
+					System.out.println("Introduce su fecha de naciemiento (dd/MM/yyyy");
+					p1.setFechaNacimiento(LocalDate.parse(sc.nextLine(), format));
+					
+					personas.add(p1);
+				}
+				
+				service.insertarLista(personas);
+				break;
+			}
 			case 0:{
 				System.out.println("Has salido del menú");
 				break;
@@ -144,7 +173,7 @@ public class App {
 				System.out.println("Opción incorrecta, intentalo de nuevo");
 			}
 
-		} while (opcion != 4);
+		} while (opcion != 0);
 		sc.close();
 	}
 
