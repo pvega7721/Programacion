@@ -18,5 +18,6 @@ select * from personas where nombre  = 'Pablo' or apellidos = 'Pablo';
 select * from personas where dni = '12345678O';
 SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%Juan%' OR APELLIDOS LIKE '%Juan%';
 select * from personas;
-SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%Jose%' OR APELLIDOS LIKE '%Jose%'
-SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%Vega%' OR APELLIDOS LIKE '%Vega%'
+SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%Jose%' OR APELLIDOS LIKE '%Jose%';
+SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%Vega%' OR APELLIDOS LIKE '%Vega%';
+SELECT * FROM personas WHERE DNI = '1234578M';
