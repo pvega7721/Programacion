@@ -18,7 +18,9 @@ public class PersonasService {
 	}
 
 	Scanner sc = new Scanner(System.in);
-
+	
+	
+	//Algo falla
 	public List<Persona> buscarPersonas() throws SQLException {
 		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE %?% OR APELLIDOS LIKE %?%;";
 		List<Persona> personas = new ArrayList<>();
