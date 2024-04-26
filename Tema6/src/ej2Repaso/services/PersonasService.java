@@ -17,11 +17,13 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
+	//los scanner en el main
 	Scanner sc = new Scanner(System.in);
 
 	public List<Persona> buscarPersonas() throws SQLException {
 		// La consulta no lleva ";"
 		// El "%" va en el filtro, no en la consulta
+		
 		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE ? OR APELLIDOS LIKE ?";
 		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
