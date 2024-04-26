@@ -20,18 +20,17 @@ public class PersonasService {
 	Scanner sc = new Scanner(System.in);
 
 	public List<Persona> buscarPersonas() throws SQLException {
-		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE %?% OR APELLIDOS LIKE %?%;";
+		// La consulta no lleva ";"
+		// El "%" va en el filtro, no en la consulta
+		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE ? OR APELLIDOS LIKE ?";
 		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
 			System.out.println("Introduce el nombre o apellido buscados");
 			String filtro = sc.nextLine();
-
-			stmt.setString(1, filtro);
-			stmt.setString(2, filtro);
-
+			stmt.setString(1, "%" + filtro + "%");
+			stmt.setString(2, "%" + filtro + "%");
 			ResultSet rs = stmt.executeQuery();
-
 			try {
 				// Mientas haya resultados, los añade a la lista e imprime la consulta
 				while (rs.next()) {
