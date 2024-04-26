@@ -44,43 +44,15 @@ public class PersonasService {
 					+ "%'";
 			System.out.println(sql);
 			rs = stmt.executeQuery(sql);
-				while (rs.next()) {
-					Persona p1 = getPersonaFromResultSet(rs);
-					personas.add(p1);
-				}
-				return personas;
-			
+			while (rs.next()) {
+				Persona p1 = getPersonaFromResultSet(rs);
+				personas.add(p1);
+			}
+			return personas;
+
 		}
 	}
-
-	/**
-	 * public void insertarPersona(Persona p) throws SQLException {
-	 * 
-	 * Boolean error = false; p = new Persona(); do { System.out.println("Indica el
-	 * DNI de la persona;"); String dni = sc.nextLine(); p.setDNI(dni);
-	 * 
-	 * System.out.println("Indica el nombre de la persona;"); String nombre =
-	 * sc.nextLine(); p.setNombre(nombre);
-	 * 
-	 * System.out.println("Indica los apellidos de la persona;"); String apellidos =
-	 * sc.nextLine(); p.setApellidos(apellidos);
-	 * 
-	 * System.out.println("Indica la fecha de nacimiento de la persona;"); String
-	 * fecha = sc.nextLine();
-	 * 
-	 * DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyy");
-	 * 
-	 * try { LocalDate fechaNacimiento = LocalDate.parse(fecha, format);
-	 * p.setFechaNacimiento(fechaNacimiento); } catch (DateTimeParseException e) {
-	 * System.out.println("La fecha indicada no es correcta"); error = true; }
-	 * 
-	 * if (!error) { try { p.validar(); } catch (DatosIncompletosException e) {
-	 * System.out.println("Los datos están incompletos"); error = true; } } } while
-	 * (error);
-	 * 
-	 * 
-	 * }
-	 **/
+	
 	public void insertarPersona(Persona p) throws SQLException {
 		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -94,10 +66,10 @@ public class PersonasService {
 			stmt.execute();
 		}
 	}
-	
+
 	public void actualizarPersona(Persona persona) throws SQLException {
 		String sql = "UPDATE PERSONAS SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ? WHERE DNI = ?";
-		try(Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)){
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, persona.getNombre());
 			stmt.setString(2, persona.getApellidos());
 			stmt.setDate(3, Date.valueOf(persona.getFechaNacimiento()));
@@ -106,17 +78,45 @@ public class PersonasService {
 			stmt.execute();
 		}
 	}
-	
+
 	public void borrarPersona(String dni) throws SQLException {
-		
+
 		String sql = "DELETE * FROM PERSONAS WHERE DNI = ?";
-		
-		try(Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			
-			//Indico el valor que debe tomar "?"
+
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			// Indico el valor que debe tomar "?"
 			stmt.setString(1, dni);
 			System.out.println(sql);
 			stmt.execute();
+		}
+	}
+
+	public void insertarLista(List<Persona> personas) throws SQLException {
+		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			//Ponemos a false el autoCommit para hacerlo manualmente
+			conn.setAutoCommit(false);
+			try {
+				for (int i = 0; i < personas.size(); i++) {
+					stmt.setString(1, personas.get(i).getDNI());
+					stmt.setString(2, personas.get(i).getNombre());
+					stmt.setString(3, personas.get(i).getApellidos());
+					stmt.setDate(4, Date.valueOf(personas.get(i).getFechaNacimiento()));
+
+					System.out.println(sql);
+					stmt.execute();
+				}
+				
+				//Al terminar ponemos commit para confirmar los cambios en la BBDD
+				conn.commit();
+			}catch(SQLException e) {
+				//En caso que haya algún error, hacemos rollback para que la BBDD quede como estaba
+				conn.rollback();
+				throw e;
+			}
+			
 		}
 	}
 
