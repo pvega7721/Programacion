@@ -13,7 +13,7 @@ public class App {
 		// Creamos una instancia de la clase PersonaService para llamar a sus métodos.
 		PersonasService service = new PersonasService();
 		Scanner sc = new Scanner(System.in);
-
+		
 		service.buscarPersonas();
 
 		// Consultar Persona
