@@ -1,4 +1,4 @@
-package ej2Repaso.modelo;
+package ej3Repaso.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

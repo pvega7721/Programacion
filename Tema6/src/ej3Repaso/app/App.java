@@ -1,9 +1,9 @@
-package ej2Repaso.app;
+package ej3Repaso.app;
 
 import java.sql.SQLException;
 import java.util.Scanner;
-import ej2Repaso.modelo.Persona;
-import ej2Repaso.services.PersonasService;
+import ej3Repaso.modelo.Persona;
+import ej3Repaso.services.PersonasService;
 
 public class App {
 
