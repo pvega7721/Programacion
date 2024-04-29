@@ -1,6 +1,7 @@
-package ej2Repaso.services;
+package ej3Repaso.services;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ej2Repaso.modelo.Persona;
+import ej3Repaso.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
@@ -17,15 +18,32 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
-	//los scanner en el main
+	// los scanner en el main
 	Scanner sc = new Scanner(System.in);
-	
-	
-	//Algo falla
+
+	public void insertarPersona(Persona p) throws SQLException {
+		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			System.out.println("Introduce el nombre o apellido buscados");
+			// Datos de la persona
+			stmt.setString(1, p.getDNI());
+			stmt.setString(2, p.getNombre());
+			stmt.setString(3, p.getApellidos());
+			stmt.setDate(4, Date.valueOf(p.getFechaNacimiento()));
+
+			stmt.execute(sql);
+
+			System.out.println(sql);
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+		}
+	}
+
 	public List<Persona> buscarPersonas() throws SQLException {
 		// La consulta no lleva ";"
 		// El "%" va en el filtro, no en la consulta
-		
+
 		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE ? OR APELLIDOS LIKE ?";
 		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -36,9 +54,9 @@ public class PersonasService {
 			stmt.setString(2, "%" + filtro + "%");
 			ResultSet rs = stmt.executeQuery();
 			try {
+				System.out.println(sql);
 				// Mientas haya resultados, los añade a la lista e imprime la consulta
 				while (rs.next()) {
-					System.out.println(sql);
 					personas.add(getPersonaFromResultSet(rs));
 				}
 				return personas;
