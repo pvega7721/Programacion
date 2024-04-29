@@ -6,10 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-<<<<<<< HEAD
-	<classpathentry kind="lib" path="C:/Users/Pablo/git/ojdbc11.jar"/>
-=======
-	<classpathentry kind="lib" path="C:/Users/pablo/git/Programacion/BBDD programacion/ojdbc11.jar"/>
->>>>>>> 09a029dde3f0d378571fdfcefb74607e1a31f7aa
+	<classpathentry kind="lib" path="C:/Users/TECH/git/Programacion/BBDD programacion/ojdbc11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
