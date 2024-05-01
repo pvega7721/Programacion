@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+<<<<<<< HEAD
 	<classpathentry kind="src" path=""/>
 	<classpathentry kind="lib" path="C:/Users/Pablo/git/ojdbc11.jar"/>
+=======
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/TECH/git/Programacion/BBDD programacion/ojdbc11.jar"/>
+>>>>>>> branch 'main' of https://github.com/pvega7721/Programacion.git
 	<classpathentry kind="output" path="bin"/>
 </classpath>

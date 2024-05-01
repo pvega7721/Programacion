@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -37,6 +38,18 @@ public class PersonasService {
 			System.out.println(personasBorradas);
 		}
 
+	}
+	public Integer borrarPersonasB() throws SQLException {
+		LocalDate mayorDeEdad = LocalDate.now().minusYears(18);
+		String sql = "DELETE FROM PERSONAS WHERE FECHA_NACIMIENTO < ?";
+		try (Connection conn = openConn.getNetworkConnection(); 
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			
+			stmt.setDate(1, Date.valueOf(mayorDeEdad));
+			
+			Integer registrosActualizados = stmt.executeUpdate();
+			return registrosActualizados;
+		}
 	}
 
 	// Devuelve una lista con todas las personas de la tabla
