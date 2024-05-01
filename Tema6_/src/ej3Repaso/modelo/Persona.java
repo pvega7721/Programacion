@@ -3,6 +3,8 @@ package ej3Repaso.modelo;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import ej3Repaso.services.DatosIncompletosException;
+
 public class Persona {
 	private String DNI;
 	private String nombre;
@@ -39,6 +41,14 @@ public class Persona {
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
+	}
+	
+	//Este método comprueba que todos los datos estén rellenos, en caso contrario, lanzará la excepción.
+	public Boolean validar()throws DatosIncompletosException{
+		if(DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()||fechaNacimiento == null) {
+			throw new DatosIncompletosException();
+		}
+		return true;
 	}
 
 	public String toString() {

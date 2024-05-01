@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
 import ej3Repaso.modelo.Persona;
 
 public class PersonasService {
@@ -18,21 +16,37 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
-	// los scanner en el main
-	Scanner sc = new Scanner(System.in);
+	public void actualizarPersona(Persona p) throws SQLException {
+		String sql = "UPDATE PERSONAS SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ? WHERE DNI = ?";
+		try (Connection conn = openConn.getNetworkConnection();
+				// En preparedStatement ya se le pasa la sentencia, no se le puede añadir
+				// también en stmt.execute()
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, p.getNombre());
+			stmt.setString(2, p.getApellidos());
+			stmt.setDate(3, Date.valueOf(p.getFechaNacimiento()));
+			stmt.setString(4, p.getDNI());
+
+			// la sentencia se le pasa en prepareStatement
+			stmt.execute();
+			System.out.println(sql);
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+		}
+	}
 
 	public void insertarPersona(Persona p) throws SQLException {
 		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
-		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			System.out.println("Introduce el nombre o apellido buscados");
-			// Datos de la persona
+		try (Connection conn = openConn.getNetworkConnection();
+				// En preparedStatement ya se le pasa la sentencia, no se le puede añadir
+				// también en stmt.execute()
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, p.getDNI());
 			stmt.setString(2, p.getNombre());
 			stmt.setString(3, p.getApellidos());
 			stmt.setDate(4, Date.valueOf(p.getFechaNacimiento()));
-
-			stmt.execute(sql);
-
+			// la sentencia se le pasa en prepareStatement
+			stmt.execute();
 			System.out.println(sql);
 
 		} catch (SQLException e) {
@@ -40,7 +54,7 @@ public class PersonasService {
 		}
 	}
 
-	public List<Persona> buscarPersonas() throws SQLException {
+	public List<Persona> buscarPersonas(String filtro) throws SQLException {
 		// La consulta no lleva ";"
 		// El "%" va en el filtro, no en la consulta
 
@@ -49,7 +63,6 @@ public class PersonasService {
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
 			System.out.println("Introduce el nombre o apellido buscados");
-			String filtro = sc.nextLine();
 			stmt.setString(1, "%" + filtro + "%");
 			stmt.setString(2, "%" + filtro + "%");
 			ResultSet rs = stmt.executeQuery();
@@ -71,16 +84,12 @@ public class PersonasService {
 		}
 	}
 
-	public Persona consultarPersona() throws SQLException {
+	public Persona consultarPersona(String dni) throws SQLException {
 		String sql = "SELECT * FROM PERSONAS WHERE DNI = ?";
 
 		try (Connection conn = openConn.getNetworkConnection();
 				// En este caso hay que importar PreparedStatement para pedir datos con "?"
 				PreparedStatement stmt = conn.prepareStatement(sql)) {
-
-			// Solicitamos al usuario el dni de la persona
-			System.out.println("Introduce el dni de la persona que buscas");
-			String dni = sc.nextLine();
 			// Indicamos el valor que debe tomar "?"
 			stmt.setString(1, dni);
 
