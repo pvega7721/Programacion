@@ -1,9 +1,9 @@
-package ej3Repaso.modelo;
+package ej345Repaso.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import ej3Repaso.services.DatosIncompletosException;
+import ej345Repaso.services.DatosIncompletosException;
 
 public class Persona {
 	private String DNI;
