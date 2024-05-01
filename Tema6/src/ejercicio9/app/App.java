@@ -1,4 +1,4 @@
-package ejercicio9.app;
+package src.ejercicio9.app;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
