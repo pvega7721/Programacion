@@ -1,11 +1,11 @@
-package ej345Repaso.app;
+package ej7Repaso.app;
 
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import ej345Repaso.modelo.Persona;
-import ej345Repaso.services.DatosIncompletosException;
-import ej345Repaso.services.PersonasService;
+import ej7Repaso.modelo.Persona;
+import ej7Repaso.services.DatosIncompletosException;
+import ej7Repaso.services.PersonasService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

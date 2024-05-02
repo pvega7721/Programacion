@@ -1,4 +1,4 @@
-package ej345Repaso.services;
+package ej7Repaso.services;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ej345Repaso.modelo.Persona;
+import ej7Repaso.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
