@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,39 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
+	public List<Persona> consultarTodasLasPersonas() throws SQLException {
+		String sql = "SELECT * FROM PERSONAS";
+
+		try (Connection conn = openConn.getNetworkConnection();
+				// En este caso hay que importar PreparedStatement para pedir datos con "?"
+				Statement stmt = conn.createStatement()) {
+			// Indicamos el valor que debe tomar "?"
+
+			// Ejecutamos el statement
+			// Resulset es para leer el resultado
+			ResultSet rs = stmt.executeQuery(sql);
+			try {
+				List<Persona> personas = new ArrayList<>();
+				/*
+				 * En caso que rs.next sea true, osea que haya resultados en la BBDD, devuelve
+				 * los datos de esta, en caso contrario devolverá null
+				 */
+				
+				while(rs.next()) {
+					personas.add(getPersonaFromResultSet(rs));
+				}
+				return personas;
+				}finally {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la base de datos");
+			return null;
+		}
+	}
+	
+	
 	public void insertarPersonas(List<Persona> p) throws SQLException {
 		try (Connection conn = openConn.getNetworkConnection()) {
 			conn.setAutoCommit(false);

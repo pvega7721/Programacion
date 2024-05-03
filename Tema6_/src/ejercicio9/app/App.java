@@ -30,6 +30,8 @@ public class App {
 			System.out.println("4. Actuilzar una persona");
 			System.out.println("5. Borrar una persona");
 			System.out.println("6. Insertar una lista de personas");
+			System.out.println("7. Consultar todas las personas");
+			
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -161,6 +163,10 @@ public class App {
 				} while (contador != 0);
 				service.insertarPersonas(listaPersonas);
 
+				break;
+			case 7:
+				sc.nextLine();
+				System.out.println(service.consultarTodasLasPersonas());
 				break;
 			default:
 				System.out.println("Opción no válida");

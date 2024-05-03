@@ -42,10 +42,23 @@ public class Persona {
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
-	
-	//Este método comprueba que todos los datos estén rellenos, en caso contrario, lanzará la excepción.
-	public Boolean validar()throws DatosIncompletosException{
-		if(DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty()||fechaNacimiento == null) {
+
+	public Boolean esMayorEdad(Persona p) {
+		LocalDate fechaActual = LocalDate.now();
+		// Calcula la fecha en la que cumple la mayoría de edad
+		LocalDate fechaMayorEdad = p.getFechaNacimiento().plusYears(18);
+		//Si la fecha en la que cumple la mayoría de edad es despues de hoy, todavía no es mayor de edad.
+		if (fechaMayorEdad.isAfter(fechaActual)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	// Este método comprueba que todos los datos estén rellenos, en caso contrario,
+	// lanzará la excepción.
+	public Boolean validar() throws DatosIncompletosException {
+		if (DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento == null) {
 			throw new DatosIncompletosException();
 		}
 		return true;
