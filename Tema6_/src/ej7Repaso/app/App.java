@@ -1,6 +1,8 @@
 package ej7Repaso.app;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import ej7Repaso.modelo.Persona;
@@ -13,8 +15,8 @@ import java.time.format.DateTimeFormatter;
 public class App {
 
 	public static void main(String[] args) throws SQLException {
-		// TODO Auto-generated method stub
-
+		// Formato para todas las fechas
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		// Creamos una instancia de la clase PersonaService para llamar a sus métodos.
 		PersonasService service = new PersonasService();
 		Scanner sc = new Scanner(System.in);
@@ -27,6 +29,7 @@ public class App {
 			System.out.println("3. Insertar una persona");
 			System.out.println("4. Actuilzar una persona");
 			System.out.println("5. Borrar una persona");
+			System.out.println("6. Insertar una lista de personas");
 			opcion = sc.nextInt();
 
 			switch (opcion) {
@@ -80,9 +83,9 @@ public class App {
 
 					System.out.println("Introduce la fecha de nacimiento de la persona (dd/MM/yyyy)");
 					String fechaNacimiento1 = sc.nextLine();
-					DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-					LocalDate fechaNacimiento = LocalDate.parse(fechaNacimiento1, format);
-					p.setFechaNacimiento(fechaNacimiento);
+
+					LocalDate fechaNacimiento3 = LocalDate.parse(fechaNacimiento1, format);
+					p.setFechaNacimiento(fechaNacimiento3);
 
 					if (!error) {
 						try {
@@ -112,10 +115,9 @@ public class App {
 				pnueva.setApellidos(sc.nextLine());
 
 				System.out.println("Introduce la nueva fecha de nacimiento de la persona (dd/MM/yyyy)");
-				String fechaNacimiento1 = sc.nextLine();
-				DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-				LocalDate fechaNacimiento = LocalDate.parse(fechaNacimiento1, format);
-				pnueva.setFechaNacimiento(fechaNacimiento);
+				String fechaNacimiento2 = sc.nextLine();
+				LocalDate fechaNacimiento4 = LocalDate.parse(fechaNacimiento2, format);
+				pnueva.setFechaNacimiento(fechaNacimiento4);
 
 				service.actualizarPersona(pnueva);
 				break;
@@ -126,7 +128,40 @@ public class App {
 				String dni = sc.nextLine();
 				service.borrarPersona(dni);
 				break;
+			case 6:
+				sc.nextLine();
+				// Creamos lista de personas
+				List<Persona> listaPersonas = new ArrayList<>();
+				System.out.println("Cuántas personas quieres añadir?");
+				Integer contador = sc.nextInt();
+				do {
+					sc.nextLine();
+					/*
+					 * Creamos persona para luego añadirla a la lista La tenemos que crear dentro
+					 * del bucle, para que al iterar cree otra persona en lugar de sobreescribirla.
+					 */
+					Persona p1 = new Persona();
+					// Solicitamos datos para la persona
+					System.out.println("Introduce el dni de la persona");
+					p1.setDNI(sc.nextLine());
 
+					System.out.println("Introduce el nombre de la persona");
+					p1.setNombre(sc.nextLine());
+
+					System.out.println("Introduce el apellido de la persona");
+					p1.setApellidos(sc.nextLine());
+
+					System.out.println("Introduce la fecha de nacimiento de la persona (dd/MM/yyyy)");
+					String fechaNacimiento3 = sc.nextLine();
+					LocalDate fechaNacimiento6 = LocalDate.parse(fechaNacimiento3, format);
+					p1.setFechaNacimiento(fechaNacimiento6);
+					// La añadimos a la lista
+					listaPersonas.add(p1);
+					contador--;
+				} while (contador != 0);
+				service.insertarPersonas(listaPersonas);
+
+				break;
 			default:
 				System.out.println("Opción no válida");
 			}

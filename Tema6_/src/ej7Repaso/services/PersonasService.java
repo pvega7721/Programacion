@@ -17,6 +17,22 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
+	public void insertarPersonas(List<Persona> p) throws SQLException {
+		try (Connection conn = openConn.getNetworkConnection()) {
+			conn.setAutoCommit(false);
+			try {
+				for (int i = 0; i < p.size(); i++) {
+					insertarPersona(p.get(i));
+				}
+				conn.commit();
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
+			}
+		}
+
+	}
+
 	public void borrarPersona(String dni) throws SQLException {
 		String sql = "DELETE FROM PERSONAS WHERE DNI = ?";
 		try (Connection conn = openConn.getNetworkConnection();

@@ -5,11 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 import ejercicio9.modelo.Persona;
 
 public class PersonasService {
@@ -19,162 +17,140 @@ public class PersonasService {
 		openConn = new OpenConnection();
 	}
 
-	Scanner sc = new Scanner(System.in);
-
-	public void borrarPersonasA() throws SQLException {
-		Integer personasBorradas = 0;
-		// recorrer lista de verTabla
-		List<Persona> personas = verTabla();
-
-		for (int i = 0; i < personas.size(); i++) {
-			// Llamamos al método mayorEdad para comprobar que sean mayores de edad
-			Boolean esMayorEdad = personas.get(i).mayorEdad(personas.get(i));
-			// En caso que la persona sea mayor de edad, se le elimina de la tabla
-			if (esMayorEdad) {
-				borrarPersona(personas.get(i).getDNI());
-				personasBorradas++;
+	public void insertarPersonas(List<Persona> p) throws SQLException {
+		try (Connection conn = openConn.getNetworkConnection()) {
+			conn.setAutoCommit(false);
+			try {
+				for (int i = 0; i < p.size(); i++) {
+					insertarPersona(p.get(i));
+				}
+				conn.commit();
+			} catch (SQLException e) {
+				conn.rollback();
+				throw e;
 			}
-			// Imprimimos el número de personas que han sido borradas
-			System.out.println(personasBorradas);
 		}
 
 	}
-	public Integer borrarPersonasB() throws SQLException {
-		LocalDate mayorDeEdad = LocalDate.now().minusYears(18);
-		String sql = "DELETE FROM PERSONAS WHERE FECHA_NACIMIENTO < ?";
-		try (Connection conn = openConn.getNetworkConnection(); 
+
+	public void borrarPersona(String dni) throws SQLException {
+		String sql = "DELETE FROM PERSONAS WHERE DNI = ?";
+		try (Connection conn = openConn.getNetworkConnection();
+				// En preparedStatement ya se le pasa la sentencia, no se le puede añadir
+				// también en stmt.execute()
 				PreparedStatement stmt = conn.prepareStatement(sql)) {
-			
-			stmt.setDate(1, Date.valueOf(mayorDeEdad));
-			
-			Integer registrosActualizados = stmt.executeUpdate();
-			return registrosActualizados;
-		}
-	}
+			stmt.setString(1, dni);
 
-	// Devuelve una lista con todas las personas de la tabla
-	public List<Persona> verTabla() throws SQLException {
-		ResultSet rs = null;
-		List<Persona> personas = new ArrayList<>();
-		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			String sql = "SELECT * FROM PERSONAS";
+			// la sentencia se le pasa en prepareStatement
+			stmt.execute();
 			System.out.println(sql);
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				Persona p1 = getPersonaFromResultSet(rs);
-				personas.add(p1);
-			}
-			return personas;
-
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
 		}
 	}
 
-	// consultar una persona a través de su DNI
-	public Persona consultarPersona(String dni) throws SQLException {
+	public void actualizarPersona(Persona p) throws SQLException {
+		String sql = "UPDATE PERSONAS SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ? WHERE DNI = ?";
+		try (Connection conn = openConn.getNetworkConnection();
+				// En preparedStatement ya se le pasa la sentencia, no se le puede añadir
+				// también en stmt.execute()
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, p.getNombre());
+			stmt.setString(2, p.getApellidos());
+			stmt.setDate(3, Date.valueOf(p.getFechaNacimiento()));
+			stmt.setString(4, p.getDNI());
 
-		ResultSet rs = null;
-		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			System.out.println(dni);
-			String sql = "SELECT * FROM personas WHERE DNI = '" + dni + "'";
+			// la sentencia se le pasa en prepareStatement
+			stmt.execute();
 			System.out.println(sql);
-			rs = stmt.executeQuery(sql);
-			if (rs.next()) {
-				return getPersonaFromResultSet(rs);
-			} else {
-				return null;
-			}
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
 		}
 	}
 
-	// Buscar a todas las personas que tengan el mismo nombre o apellidos
-	public List<Persona> buscarPersonas(String filtro) throws SQLException {
-		ResultSet rs = null;
-		List<Persona> personas = new ArrayList<>();
-		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
-			String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE '%" + filtro + "%' OR APELLIDOS LIKE '%" + filtro
-					+ "%'";
-			System.out.println(sql);
-			rs = stmt.executeQuery(sql);
-			while (rs.next()) {
-				Persona p1 = getPersonaFromResultSet(rs);
-				personas.add(p1);
-			}
-			return personas;
-
-		}
-	}
-
-	// Inserta una persona en la tabla
 	public void insertarPersona(Persona p) throws SQLException {
 		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
-		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+		try (Connection conn = openConn.getNetworkConnection();
+				// En preparedStatement ya se le pasa la sentencia, no se le puede añadir
+				// también en stmt.execute()
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, p.getDNI());
 			stmt.setString(2, p.getNombre());
 			stmt.setString(3, p.getApellidos());
 			stmt.setDate(4, Date.valueOf(p.getFechaNacimiento()));
-
-			System.out.println(sql);
+			// la sentencia se le pasa en prepareStatement
 			stmt.execute();
+			System.out.println(sql);
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
 		}
 	}
 
-	// Dado un DNI, modifica los datos de esa persona
-	public void actualizarPersona(Persona persona) throws SQLException {
-		String sql = "UPDATE PERSONAS SET NOMBRE = ?, APELLIDOS = ?, FECHA_NACIMIENTO = ? WHERE DNI = ?";
-		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			stmt.setString(1, persona.getNombre());
-			stmt.setString(2, persona.getApellidos());
-			stmt.setDate(3, Date.valueOf(persona.getFechaNacimiento()));
-			stmt.setString(4, persona.getDNI());
-			System.out.println(sql);
-			stmt.execute();
-		}
-	}
+	public List<Persona> buscarPersonas(String filtro) throws SQLException {
+		// La consulta no lleva ";"
+		// El "%" va en el filtro, no en la consulta
 
-	// Elimina a una persona de la tabla
-	public void borrarPersona(String dni) throws SQLException {
-
-		String sql = "DELETE * FROM PERSONAS WHERE DNI = ?";
-
+		String sql = "SELECT * FROM PERSONAS WHERE NOMBRE LIKE ? OR APELLIDOS LIKE ?";
+		List<Persona> personas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-			// Indico el valor que debe tomar "?"
-			stmt.setString(1, dni);
-			System.out.println(sql);
-			stmt.execute();
-		}
-	}
-
-	// Añade una lista de personas a la tabla
-	public void insertarLista(List<Persona> personas) throws SQLException {
-		String sql = "INSERT INTO PERSONAS VALUES (?, ?, ?, ?)";
-		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-			// Ponemos a false el autoCommit para hacerlo manualmente
-			conn.setAutoCommit(false);
+			System.out.println("Introduce el nombre o apellido buscados");
+			stmt.setString(1, "%" + filtro + "%");
+			stmt.setString(2, "%" + filtro + "%");
+			ResultSet rs = stmt.executeQuery();
 			try {
-				for (int i = 0; i < personas.size(); i++) {
-					stmt.setString(1, personas.get(i).getDNI());
-					stmt.setString(2, personas.get(i).getNombre());
-					stmt.setString(3, personas.get(i).getApellidos());
-					stmt.setDate(4, Date.valueOf(personas.get(i).getFechaNacimiento()));
-
-					System.out.println(sql);
-					stmt.execute();
+				System.out.println(sql);
+				// Mientas haya resultados, los añade a la lista e imprime la consulta
+				while (rs.next()) {
+					personas.add(getPersonaFromResultSet(rs));
 				}
+				return personas;
 
-				// Al terminar ponemos commit para confirmar los cambios en la BBDD
-				conn.commit();
-			} catch (SQLException e) {
-				// En caso que haya algún error, hacemos rollback para que la BBDD quede como
-				// estaba
-				conn.rollback();
-				throw e;
+			} finally {
+				rs.close();
 			}
 
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+			return null;
 		}
 	}
 
+	public Persona consultarPersona(String dni) throws SQLException {
+		String sql = "SELECT * FROM PERSONAS WHERE DNI = ?";
+
+		try (Connection conn = openConn.getNetworkConnection();
+				// En este caso hay que importar PreparedStatement para pedir datos con "?"
+				PreparedStatement stmt = conn.prepareStatement(sql)) {
+			// Indicamos el valor que debe tomar "?"
+			stmt.setString(1, dni);
+
+			// Ejecutamos el statement
+			// Resulset es para leer el resultado
+			ResultSet rs = stmt.executeQuery();
+			try {
+				/*
+				 * En caso que rs.next sea true, osea que haya resultados en la BBDD, devuelve
+				 * los datos de esta, en caso contrario devolverá null
+				 */
+				if (rs.next()) {
+					System.out.println(sql);
+					return getPersonaFromResultSet(rs);
+				} else {
+					return null;
+				}
+			} finally {
+				rs.close();
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la base de datos");
+			return null;
+		}
+	}
+
+	// Método para obtener los datos de una persona.
 	private Persona getPersonaFromResultSet(ResultSet rs) throws SQLException {
 		Persona p = new Persona();
 		p.setNombre(rs.getString("NOMBRE"));
@@ -183,4 +159,5 @@ public class PersonasService {
 		p.setFechaNacimiento(rs.getDate("FECHA_NACIMIENTO").toLocalDate());
 		return p;
 	}
+
 }
