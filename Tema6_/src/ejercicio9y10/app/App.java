@@ -1,13 +1,13 @@
-package ejercicio9.app;
+package ejercicio9y10.app;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import ejercicio9.modelo.Persona;
-import ejercicio9.services.DatosIncompletosException;
-import ejercicio9.services.PersonasService;
+import ejercicio9y10.modelo.Persona;
+import ejercicio9y10.services.DatosIncompletosException;
+import ejercicio9y10.services.PersonasService;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -31,6 +31,8 @@ public class App {
 			System.out.println("5. Borrar una persona");
 			System.out.println("6. Insertar una lista de personas");
 			System.out.println("7. Consultar todas las personas");
+			System.out.println("8. Eliminar todas las personas mayores de edad(A)");
+			System.out.println("9. Eliminar todas las personas mayores de edad(A)");
 			
 			opcion = sc.nextInt();
 
@@ -167,6 +169,14 @@ public class App {
 			case 7:
 				sc.nextLine();
 				System.out.println(service.consultarTodasLasPersonas());
+				break;
+			case 8:
+				sc.nextLine();
+				service.borrarPersonasA();
+				break;
+			case 9:
+				sc.nextLine();
+				service.borrarPersonasB();
 				break;
 			default:
 				System.out.println("Opción no válida");

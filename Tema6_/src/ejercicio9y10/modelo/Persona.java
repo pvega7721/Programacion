@@ -1,9 +1,9 @@
-package ejercicio9.modelo;
+package ejercicio9y10.modelo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import ejercicio9.services.DatosIncompletosException;
+import ejercicio9y10.services.DatosIncompletosException;
 
 public class Persona {
 	private String DNI;
@@ -43,10 +43,10 @@ public class Persona {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Boolean esMayorEdad(Persona p) {
+	public Boolean esMayorEdad() {
 		LocalDate fechaActual = LocalDate.now();
 		// Calcula la fecha en la que cumple la mayoría de edad
-		LocalDate fechaMayorEdad = p.getFechaNacimiento().plusYears(18);
+		LocalDate fechaMayorEdad = this.getFechaNacimiento().plusYears(18);
 		//Si la fecha en la que cumple la mayoría de edad es despues de hoy, todavía no es mayor de edad.
 		if (fechaMayorEdad.isAfter(fechaActual)) {
 			return false;

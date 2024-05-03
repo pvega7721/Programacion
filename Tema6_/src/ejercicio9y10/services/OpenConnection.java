@@ -1,4 +1,4 @@
-package ejercicio9.services;
+package ejercicio9y10.services;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package ejercicio9.services;
+package ejercicio9y10.services;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,13 +9,50 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import ejercicio9.modelo.Persona;
+import ejercicio9y10.modelo.Persona;
 
 public class PersonasService {
 	private OpenConnection openConn;
 
 	public PersonasService() {
 		openConn = new OpenConnection();
+	}
+
+	public void borrarPersonasB() {
+		String sql = "DELETE FROM personas WHERE EXTRACT(YEAR FROM fecha_nacimiento) <= EXTRACT(YEAR FROM CURRENT_DATE) - 18";
+
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			// Ejecutamos el statement
+			stmt.execute();
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la base de datos");
+		}
+	}
+
+	public void borrarPersonasA() {
+		String sql = "DELETE FROM PERSONAS WHERE DNI = ?";
+
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+			List<Persona> personas = consultarTodasLasPersonas();
+
+			// Recorre la lista de personas, compurueba una a una si es mayor de edad, si lo
+			// es, la elimina de la lista
+			for (Persona persona : personas) {
+				if (persona.esMayorEdad()) {
+					// Asignamos a la "?" el dni de la persona que es mayor de edad, para después
+					// eliminarla
+					stmt.setString(1, persona.getDNI());
+					// Ejecutamos el statement
+					stmt.execute();
+				}
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la base de datos");
+		}
 	}
 
 	public List<Persona> consultarTodasLasPersonas() throws SQLException {
@@ -35,12 +72,12 @@ public class PersonasService {
 				 * En caso que rs.next sea true, osea que haya resultados en la BBDD, devuelve
 				 * los datos de esta, en caso contrario devolverá null
 				 */
-				
-				while(rs.next()) {
+
+				while (rs.next()) {
 					personas.add(getPersonaFromResultSet(rs));
 				}
 				return personas;
-				}finally {
+			} finally {
 				rs.close();
 			}
 
@@ -49,8 +86,7 @@ public class PersonasService {
 			return null;
 		}
 	}
-	
-	
+
 	public void insertarPersonas(List<Persona> p) throws SQLException {
 		try (Connection conn = openConn.getNetworkConnection()) {
 			conn.setAutoCommit(false);
