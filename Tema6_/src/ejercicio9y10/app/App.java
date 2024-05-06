@@ -33,7 +33,7 @@ public class App {
 			System.out.println("7. Consultar todas las personas");
 			System.out.println("8. Eliminar todas las personas mayores de edad(A)");
 			System.out.println("9. Eliminar todas las personas mayores de edad(A)");
-			
+
 			opcion = sc.nextInt();
 
 			switch (opcion) {

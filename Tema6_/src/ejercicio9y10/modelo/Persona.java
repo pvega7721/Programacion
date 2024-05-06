@@ -47,7 +47,8 @@ public class Persona {
 		LocalDate fechaActual = LocalDate.now();
 		// Calcula la fecha en la que cumple la mayoría de edad
 		LocalDate fechaMayorEdad = this.getFechaNacimiento().plusYears(18);
-		//Si la fecha en la que cumple la mayoría de edad es despues de hoy, todavía no es mayor de edad.
+		// Si la fecha en la que cumple la mayoría de edad es despues de hoy, todavía no
+		// es mayor de edad.
 		if (fechaMayorEdad.isAfter(fechaActual)) {
 			return false;
 		} else {

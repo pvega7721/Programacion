@@ -24,7 +24,9 @@ public class App {
 			System.out.println("0. Salir");
 			System.out.println("1. Insertar un coche");
 			System.out.println("2. Actualizar un coche");
-			System.out.println("3. Consultar un coche");
+			System.out.println("3. Borrar un coche");
+			System.out.println("4. Consultar un coche");
+			System.out.println("5. Buscar coches de la misma marca");
 
 			opcion = sc.nextInt();
 			sc.nextLine();
@@ -42,8 +44,17 @@ public class App {
 				service.actualizarCoche(coche2);
 				break;
 			case 3:
+				System.out.println("Introduce la matricula del coche que quieres eliminar");
+				service.borrarCoche(sc.nextLine());
+				break;
+			case 4:
 				System.out.println("Introduce la matrícula del coche buscado");
 				System.out.println(service.consultarCoche(sc.nextLine()));
+				break;
+			case 5:
+				System.out.println("Introduce la marca que buscas");
+				System.out.println(service.buscarCoches(sc.nextLine()));
+				
 				break;
 			default:
 				System.out.println("Opción no válida");
