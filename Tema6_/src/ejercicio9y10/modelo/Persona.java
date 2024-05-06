@@ -6,17 +6,17 @@ import java.time.format.DateTimeFormatter;
 import ejercicio9y10.services.DatosIncompletosException;
 
 public class Persona {
-	private String DNI;
+	private String dni;
 	private String nombre;
 	private String apellidos;
 	private LocalDate fechaNacimiento;
 
 	public String getDNI() {
-		return DNI;
+		return dni;
 	}
 
 	public void setDNI(String dNI) {
-		DNI = dNI;
+		dni = dNI;
 	}
 
 	public String getNombre() {
@@ -58,7 +58,7 @@ public class Persona {
 	// Este método comprueba que todos los datos estén rellenos, en caso contrario,
 	// lanzará la excepción.
 	public Boolean validar() throws DatosIncompletosException {
-		if (DNI.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento == null) {
+		if (dni.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || fechaNacimiento == null) {
 			throw new DatosIncompletosException();
 		}
 		return true;
@@ -66,7 +66,7 @@ public class Persona {
 
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return "Persona [DNI=" + DNI + ", nombre=" + nombre + ", Apellidos=" + apellidos + ", fechaNacimiento="
+		return "Persona [DNI=" + dni + ", nombre=" + nombre + ", Apellidos=" + apellidos + ", fechaNacimiento="
 				+ format.format(fechaNacimiento) + "]\n";
 	}
 
