@@ -6,6 +6,7 @@ CREATE TABLE coches (
  PRIMARY KEY (matricula)
 );
 select * from coches;
+hola;
 
 INSERT INTO coches VALUES ('0000BBB', 'Toyota', 15000, TO_DATE('2024-05-01 10:00', 'YYYY-MM-DD HH24:MI'));
 INSERT INTO coches VALUES ('0000BBC', 'Honda', 20000, TO_DATE('2024-05-02 11:30', 'YYYY-MM-DD HH24:MI'));
