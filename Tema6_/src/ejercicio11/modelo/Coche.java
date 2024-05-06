@@ -1,14 +1,14 @@
 package ejercicio11.modelo;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Coche {
 	private String matricula;
 	private String marca;
 	private BigDecimal precio;
-	private LocalDate fechaHoraCompra;
+	private LocalDateTime fechaHoraCompra;
 	
 	public String getMatricula() {
 		return matricula;
@@ -28,17 +28,17 @@ public class Coche {
 	public void setPrecio(BigDecimal precio) {
 		this.precio = precio;
 	}
-	public LocalDate getFechaHoraCompra() {
+	public LocalDateTime getFechaHoraCompra() {
 		return fechaHoraCompra;
 	}
-	public void setFechaHoraCompra(LocalDate fechaHoraCompra) {
+	public void setFechaHoraCompra(LocalDateTime fechaHoraCompra) {
 		this.fechaHoraCompra = fechaHoraCompra;
 	}
 	@Override
 	public String toString() {
-		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 		return "Coche [matricula=" + matricula + ", marca=" + marca + ", precio=" + precio + ", fechaHoraCompra="
-				+ format.format(fechaHoraCompra) + "]\\n";
+				+ format.format(fechaHoraCompra) + "]\n";
 	}
 	
 }

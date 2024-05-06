@@ -1,5 +1,6 @@
 package ejercicio11.services;
 
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import ejercicio11.modelo.Coche;
-import ejercicio9y10.modelo.Persona;
 
 public class CochesService {
 	private OpenConnection openConn;
@@ -19,11 +19,10 @@ public class CochesService {
 	}
 
 	public Coche consultarCoche(String matricula) throws SQLException {
-		String sql = "SELECT * FROM COCHES WHERE MATRICULA = ?";
+		String sql = "SELECT * FROM COCHES WHERE MATRICULA like ?";
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			
-			stmt.setString(1, matricula);
-			stmt.executeQuery();
+			stmt.setString(1,matricula);
 			ResultSet rs = stmt.executeQuery();
 			try {
 				if (rs.next()) {
@@ -37,6 +36,7 @@ public class CochesService {
 			}
 		} catch (SQLException e) {
 			System.err.println("Error al acceder a la BBDD");
+			return null;
 		}
 	}
 	
@@ -45,9 +45,10 @@ public class CochesService {
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, c.getMarca());
 			stmt.setBigDecimal(2, c.getPrecio());
-			stmt.setDate(3, Date.valueOf(c.getFechaHoraCompra()));
+			stmt.setTimestamp(3, Timestamp.valueOf(c.getFechaHoraCompra()));
 			stmt.setString(4, c.getMatricula());
 			stmt.execute();
+			System.out.println(sql);
 			System.out.println("Coche modificado correctamente");
 
 		} catch (SQLException e) {
@@ -61,8 +62,9 @@ public class CochesService {
 			stmt.setString(1, c.getMatricula());
 			stmt.setString(2, c.getMarca());
 			stmt.setBigDecimal(3, c.getPrecio());
-			stmt.setDate(4, Date.valueOf(c.getFechaHoraCompra()));
+			stmt.setTimestamp(4, Timestamp.valueOf(c.getFechaHoraCompra()));
 			stmt.execute();
+			System.out.println(sql);
 			System.out.println("Coche insertado correctamente");
 
 		} catch (SQLException e) {
@@ -74,7 +76,7 @@ public class CochesService {
 		c.setMatricula(rs.getString("MATRICULA"));
 		c.setMarca(rs.getString("MARCA"));
 		c.setPrecio(rs.getBigDecimal("PRECIO"));
-		c.setFechaHoraCompra(rs.getDate("FECHA_HORA_COMPRA").toLocalDate());
+		c.setFechaHoraCompra(rs.getTimestamp("FECHA_HORA_COMPRA").toLocalDateTime());
 		return c;
 	}
 
