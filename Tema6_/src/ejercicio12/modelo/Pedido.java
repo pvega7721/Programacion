@@ -11,7 +11,10 @@ public class Pedido {
 	private LocalDate fecha_entrega;
 	private List<PedidoLinea> lineas;
 	
-
+	public Pedido() {
+		
+	};
+	
 	public Pedido(List<PedidoLinea> lineas) {
 		this.lineas = new ArrayList<>();
 	}
