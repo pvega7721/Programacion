@@ -31,9 +31,10 @@ public class CochesService {
 				while (rs.next()) {
 					listaCoches.add(getCocheFromResultSet(rs));
 				}
-				if(listaCoches.isEmpty()) {
+				if (listaCoches.isEmpty()) {
 					System.err.println("No hay coches de esa marca");
-				}else;
+				} else
+					;
 				return listaCoches;
 
 			} finally {
