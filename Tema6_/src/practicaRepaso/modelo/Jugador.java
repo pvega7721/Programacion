@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Jugador {
 	private Integer numero;
-	private Integer codigo_equipo;
+	private String codigo_equipo;
 	private String nombre;
 	private LocalDate fechaNacimiento;
 
@@ -17,12 +17,12 @@ public class Jugador {
 		this.numero = numero;
 	}
 
-	public Integer getCodigo_equipo() {
+	public String getCodigo_equipo() {
 		return codigo_equipo;
 	}
 
-	public void setCodigo_equipo(Integer codigo_equipo) {
-		this.codigo_equipo = codigo_equipo;
+	public void setCodigo_equipo(String string) {
+		this.codigo_equipo = string;
 	}
 
 	public String getNombre() {
