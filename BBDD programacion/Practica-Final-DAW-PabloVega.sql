@@ -17,5 +17,9 @@ CREATE TABLE jugador (
     FOREIGN KEY (CODIGO_EQUIPO)
     REFERENCES equipo(CODIGO)
 );
+insert into jugador values(12, 'bcn', 'Juan', '02/04/2005');
 select * from jugador;
 select * from equipo;
+insert into equipo values('rm', 'Real Madrid');
+insert into equipo values('bcn', 'Barcelona');
+select * from jugador where codigo_equipo like 'bcn';
