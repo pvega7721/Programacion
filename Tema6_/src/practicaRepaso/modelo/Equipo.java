@@ -12,9 +12,6 @@ public class Equipo {
 	private List<Jugador> listaJugadores;
 
 	public Equipo() {
-		
-	}
-	public Equipo(List<Jugador> listaJugadores) {
 		this.listaJugadores = new ArrayList<>();
 	}
 
@@ -66,7 +63,7 @@ public class Equipo {
 
 	@Override
 	public String toString() {
-		return "Equipo [codigo=" + codigo + ", nombre=" + nombre + ", listaJugadores=" + listaJugadores + "]\n";
+		return "Equipo: " + codigo + "/" + nombre +  "]\n";
 	}
 
 }

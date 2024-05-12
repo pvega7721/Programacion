@@ -23,3 +23,4 @@ select * from equipo;
 insert into equipo values('rm', 'Real Madrid');
 insert into equipo values('bcn', 'Barcelona');
 select * from jugador where codigo_equipo like 'bcn';
+select * from equipo where codigo like 'bcn';

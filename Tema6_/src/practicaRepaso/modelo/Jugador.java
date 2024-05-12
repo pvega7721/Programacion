@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Jugador {
 	private Integer numero;
-	private String codigo_equipo;
+	private String codigoEquipo;
 	private String nombre;
 	private LocalDate fechaNacimiento;
 
@@ -17,12 +17,12 @@ public class Jugador {
 		this.numero = numero;
 	}
 
-	public String getCodigo_equipo() {
-		return codigo_equipo;
+	public String getCodigoEquipo() {
+		return codigoEquipo;
 	}
 
-	public void setCodigo_equipo(String string) {
-		this.codigo_equipo = string;
+	public void setCodigoEquipo(String string) {
+		this.codigoEquipo = string;
 	}
 
 	public String getNombre() {
@@ -44,7 +44,7 @@ public class Jugador {
 	@Override
 	public String toString() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		return "Jugador [numero=" + numero + ", codigo_equipo=" + codigo_equipo + ", nombre=" + nombre
+		return "Jugador [numero=" + numero + ", codigo_equipo=" + codigoEquipo + ", nombre=" + nombre
 				+ ", fechaNacimiento=" + format.format(fechaNacimiento) + "]\n";
 	}
 

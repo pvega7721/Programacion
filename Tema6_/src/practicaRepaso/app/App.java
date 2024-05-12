@@ -3,6 +3,7 @@ package practicaRepaso.app;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -11,24 +12,15 @@ import practicaRepaso.modelo.Equipo;
 import practicaRepaso.modelo.Jugador;
 import practicaRepaso.services.EquipoServiceException;
 import practicaRepaso.services.EquiposService;
+import practicaRepaso.services.NotFoundException;
 
 public class App {
-	public static void main(String[] args) throws SQLException, EquipoServiceException {
+	public static void main(String[] args) throws SQLException, EquipoServiceException, NotFoundException {
 		// TODO Auto-generated method stub
 		EquiposService service = new EquiposService();
 		Scanner sc = new Scanner(System.in);
-		/*
-		 * Jugador jugador1 = new Jugador(); LocalDate FechaNacimiento1 =
-		 * LocalDate.of(2002, Month.APRIL, 2);
-		 * jugador1.setFechaNacimiento(FechaNacimiento1); Jugador jugador2 = new
-		 * Jugador(); LocalDate FechaNacimiento2 = LocalDate.of(2005, Month.APRIL, 2);
-		 * jugador2.setFechaNacimiento(FechaNacimiento2); Equipo equipo1 = new Equipo();
-		 * List<Jugador> jugadores = new ArrayList<>(); jugadores.add(jugador1);
-		 * jugadores.add(jugador2); equipo1.setListaJugadores(jugadores);
-		 * System.out.println(equipo1.getEdadMedia(jugadores));
-		 */
-		System.out.println(service.consultarJugadoresEquipo("bcn"));
-
+		EquiposService equiposService = new EquiposService();
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Integer opcion = 0;
 		do {
 			System.out.println("-----------------------------------------------");
@@ -37,19 +29,48 @@ public class App {
 			System.out.println("           (2) Crear un nuevo equipo");
 			System.out.println("           (3) Consultar un equipo por su código");
 			System.out.println("           (0) Salir");
+			System.out.println("-----------------------------------------------");
 			opcion = sc.nextInt();
 			switch (opcion) {
 			case 0:
+				System.out.println("Bye!!");
 				break;
 			case 1:
+				sc.nextLine();
 				System.out.println(service.consultarEquipos());
 				break;
+			case 2:
+				sc.nextLine();
+				Equipo e2 = Menu.obtenerDatosEquipo();
+				service.crearEquipo(e2);
+				Jugador j2 = new Jugador();
+				String opcion1 = "";
+				do {
+					System.out.println("Introduce el nombre del jugador");
+					j2.setNombre(sc.nextLine());
+					System.out.println("Introduce la fecha de nacimiento del juador (dd/MM/yyyy)");
+					String fechaNacimiento = sc.nextLine();
+					LocalDate fechaNacimiento2 = LocalDate.parse(fechaNacimiento, format);
+					j2.setFechaNacimiento(fechaNacimiento2);
+					System.out.println("¿Deseas añadir otro jugador? (S/N)");
+					opcion1 = sc.nextLine();
+					e2.getListaJugadores().add(j2);
+				}while(!opcion1.equalsIgnoreCase("n"));
+				System.out.println("Equipo guardado!!");
 			case 3:
+				sc.nextLine();
+				System.out.println("Introduce el código del equipo: ");
+				String codigo = sc.nextLine();
+				System.out.println(service.consultarEquipoCompleto(codigo));
 				break;
 			default:
 				System.out.println("Opción no válida");
 			}
 		} while (opcion != 0);
+		sc.close();
 	}
 
+	
+
+	
 }

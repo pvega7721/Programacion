@@ -1,6 +1,7 @@
 package practicaRepaso.services;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,8 +32,8 @@ public class EquiposService {
 				if (equipos.isEmpty()) {
 					System.err.println("No hay equipos");
 				}
-					return equipos;
-				
+				return equipos;
+
 			} finally {
 				rs.close();
 			}
@@ -40,8 +41,8 @@ public class EquiposService {
 			throw new EquipoServiceException("Error al consultar equipos: " + e.getMessage());
 		}
 	}
-	
-	public List<Jugador> consultarJugadoresEquipo(String codigo) throws SQLException{
+
+	public List<Jugador> consultarJugadoresEquipo(String codigo) throws SQLException {
 		String sql = "select * from jugador where codigo_equipo like ?";
 		List<Jugador> jugadores = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -52,16 +53,125 @@ public class EquiposService {
 				while (rs.next()) {
 					jugadores.add(getJugadorFromResultSet(rs));
 				}
-				if(jugadores.isEmpty()) {
+				if (jugadores.isEmpty()) {
 					System.err.println("No hay jugadores en el equipo");
 				}
 				return jugadores;
-			}finally {
+			} finally {
 				rs.close();
 			}
 		} catch (SQLException e) {
 			System.err.println("Error al acceder a BBDD");
 			return null;
+		}
+	}
+
+	public Equipo consultarEquipoCompleto(String codigo) throws EquipoServiceException, NotFoundException {
+		String sql = "select * from equipo where codigo like ?";
+		Equipo e1 = new Equipo();
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, codigo);
+			ResultSet rs = stmt.executeQuery();
+			try {
+				consultarJugadoresEquipo(codigo);
+			} catch (Exception a) {
+				throw new NotFoundException();
+			} finally {
+				rs.close();
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a BBDD");
+			throw new EquipoServiceException();
+		}
+		return e1;
+	}
+
+	public void insertarJugador(Jugador j) throws SQLException {
+		String sql = "insert into jugador values(?, ?, ?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, j.getNumero());
+			stmt.setString(2, j.getCodigoEquipo());
+			stmt.setString(3, j.getNombre());
+			stmt.setDate(4, Date.valueOf(j.getFechaNacimiento()));
+			stmt.execute();
+			System.out.println("Jugador insertado correctamente");
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+			throw e;
+		}
+	}
+
+	public void crearEquipo(Equipo e1) throws SQLException, EquipoServiceException {
+		String sql = "insert into equipo values(?, ?)";
+		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+			conn.setAutoCommit(false);
+			try {
+				// Accede a cada jugador de la lista y les asigna el código del equipo y el
+				// número
+				for (int i = 0; i < e1.getListaJugadores().size(); i++) {
+					e1.getListaJugadores().get(i).setCodigoEquipo(e1.getCodigo());
+					e1.getListaJugadores().get(i).setNumero(i);
+					// Inserta el jugador en la tabla
+					insertarJugador(e1.getListaJugadores().get(i));
+				}
+				// Inserta el equipo en la BBDD
+				stmt.setString(1, e1.getCodigo());
+				stmt.setString(2, e1.getNombre());
+				stmt.execute();
+				conn.commit();
+			} catch (SQLException e) {
+				conn.rollback();
+				throw new EquipoServiceException();
+			}
+
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+			throw e;
+		}
+	}
+
+	public void borrarEquipoCompleto(String codigo) throws SQLException, NotFoundException, EquipoServiceException {
+		// Consultas para eliminar los jugadores de la tabla jugador y al equipo de la
+		// tabla equipo
+		String sql = "delete from jugador where codigo_equipo = ?";
+		String sql2 = "delete from equipo where codigo = ?";
+		try (Connection conn = openConn.getNetworkConnection();
+				PreparedStatement stmt = conn.prepareStatement(sql);
+				PreparedStatement stmt2 = conn.prepareStatement(sql2)) {
+			conn.setAutoCommit(false);
+			try {
+				stmt.setString(1, codigo);
+				stmt.execute();
+				stmt2.setString(1, codigo);
+				stmt2.execute();
+				conn.commit();
+			} catch (SQLException e) {
+				conn.rollback();
+				throw new NotFoundException();
+			} catch (Exception e) {
+				conn.rollback();
+				throw new EquipoServiceException();
+			}
+		} catch (SQLException e) {
+			System.err.println("Error al acceder a la BBDD");
+		}
+	}
+
+	public void añadirJugadorAEquipo(Equipo e, Jugador j) throws SQLException, EquipoServiceException {
+		// consultar todos los jugadores del equipo para ver cuantos hay
+		Integer cantidadJugadores = consultarJugadoresEquipo(e.getCodigo()).size();
+		try {
+			//Le introduzco al jugador el número siguiente al último del equipo
+			//(Si el último de la lista tiene el 14, este tendrá el 15)
+			j.setNumero(e.getListaJugadores().get(consultarJugadoresEquipo(e.getCodigo()).size() - 1).getNumero() + 1);
+			//Le introduzco al usuario el codigo del equipo
+			j.setCodigoEquipo(e.getCodigo());
+			//Inserto al jugador en la tabla
+			insertarJugador(j);
+
+		} catch (SQLException a) {
+			throw new EquipoServiceException();
 		}
 	}
 
@@ -71,11 +181,11 @@ public class EquiposService {
 		e.setNombre(rs.getString("NOMBRE"));
 		return e;
 	}
-	
+
 	private Jugador getJugadorFromResultSet(ResultSet rs) throws SQLException {
 		Jugador j = new Jugador();
 		j.setNumero(rs.getInt("NUMERO"));
-		j.setCodigo_equipo(rs.getString("CODIGO_EQUIPO"));
+		j.setCodigoEquipo(rs.getString("CODIGO_EQUIPO"));
 		j.setNombre(rs.getString("NOMBRE"));
 		j.setFechaNacimiento(rs.getDate("NACIMIENTO").toLocalDate());
 		return j;
