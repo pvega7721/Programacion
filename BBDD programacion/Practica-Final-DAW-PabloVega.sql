@@ -18,9 +18,13 @@ CREATE TABLE jugador (
     REFERENCES equipo(CODIGO)
 );
 insert into jugador values(12, 'bcn', 'Juan', '02/04/2005');
+insert into jugador values(15, 'rm', 'Alvaro', '14/08/1999');
+insert into jugador values(19, 'sv', 'Carlos', '19/10/2003');
+insert into jugador values(21, 'bt', 'Sergio', '19/10/2003');
+insert into jugador values(18, 'bb', 'Tomas', '19/10/2003');
 select * from jugador;
 select * from equipo;
 insert into equipo values('rm', 'Real Madrid');
 insert into equipo values('bcn', 'Barcelona');
-select * from jugador where codigo_equipo like 'bcn';
-select * from equipo where codigo like 'bcn';
+select * from jugador where codigo_equipo like 'rm';
+select * from equipo where codigo like 'rm';

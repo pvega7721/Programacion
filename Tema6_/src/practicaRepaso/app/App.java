@@ -22,7 +22,7 @@ public class App {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Integer opcion = 0;
 		System.out.println("Pruebas");
-		//System.out.println(service.consultarEquipoCompleto("sv"));
+		System.out.println(service.consultarEquipoCompleto("rm"));
 		/*
 		do {
 			Menu.menuPrincipal();
