@@ -8,6 +8,27 @@ import practicaRepaso.modelo.Equipo;
 import practicaRepaso.modelo.Jugador;
 
 public class Menu {
+	
+	public static void subMenu3() {
+		System.out.println("-----------------------------------------------");
+		System.out.println("Elige una de estas opciones para el equipo: ");
+		System.out.println("           (1) Ver plantilla del equipo");
+		System.out.println("           (2) Borrar equipo");
+		System.out.println("           (3) Añadir un jugador");
+		System.out.println("           (4) Calcular edad media de plantilla");
+		System.out.println("           (0) Volver al menú principal");
+		System.out.println("-----------------------------------------------");
+	}
+	public static void menuPrincipal() {
+		System.out.println("-----------------------------------------------");
+		System.out.println("Elige una de estas opciones: ");
+		System.out.println("           (1) Ver todos los equipos registrados");
+		System.out.println("           (2) Crear un nuevo equipo");
+		System.out.println("           (3) Consultar un equipo por su código");
+		System.out.println("           (0) Salir");
+		System.out.println("-----------------------------------------------");
+	}
+
 	public static Jugador obtenerDatosJugador() {
 		Jugador j = new Jugador();
 		Scanner sc = new Scanner(System.in);

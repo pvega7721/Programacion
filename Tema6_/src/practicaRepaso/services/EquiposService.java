@@ -1,11 +1,15 @@
 package practicaRepaso.services;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +21,24 @@ public class EquiposService {
 
 	public EquiposService() {
 		openConn = new OpenConnection();
+	}
+
+	public BigDecimal calcularEdadMediaPlantilla(Equipo eq) {
+		Integer edadTotal = 0;
+		LocalDate fechaActual = LocalDate.now();
+		try {
+			for (int i = 0; i < eq.getListaJugadores().size() - 1; i++) {
+				LocalDate fechaNac = eq.getListaJugadores().get(i).getFechaNacimiento();
+				Period periodo = Period.between(fechaNac, fechaActual);
+				Integer edad = periodo.getYears();
+				edadTotal += edad;
+			}
+			BigDecimal edadMedia = new BigDecimal(edadTotal / eq.getListaJugadores().size());
+			return edadMedia;
+		} catch (ArithmeticException e) {
+			System.out.println("No hay jugadores en el equipo");
+			return null;
+		}
 	}
 
 	public List<Equipo> consultarEquipos() throws SQLException, EquipoServiceException {
@@ -48,18 +70,15 @@ public class EquiposService {
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, codigo);
 			ResultSet rs = stmt.executeQuery();
-			try {
-				System.out.println(sql);
-				while (rs.next()) {
-					jugadores.add(getJugadorFromResultSet(rs));
-				}
-				if (jugadores.isEmpty()) {
-					System.err.println("No hay jugadores en el equipo");
-				}
-				return jugadores;
-			} finally {
-				rs.close();
+			System.out.println(sql);
+			while (rs.next()) {
+				jugadores.add(getJugadorFromResultSet(rs));
 			}
+			if (jugadores.isEmpty()) {
+				System.out.println("No hay jugadores en el equipo");
+			}
+			return jugadores;
+
 		} catch (SQLException e) {
 			System.err.println("Error al acceder a BBDD");
 			return null;
@@ -67,18 +86,18 @@ public class EquiposService {
 	}
 
 	public Equipo consultarEquipoCompleto(String codigo) throws EquipoServiceException, NotFoundException {
-		String sql = "select * from equipo where codigo like ?";
+		String sql = "select * from equipo where codigo = ?";
 		Equipo e1 = new Equipo();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, codigo);
 			ResultSet rs = stmt.executeQuery();
-			try {
-				consultarJugadoresEquipo(codigo);
-			} catch (Exception a) {
-				throw new NotFoundException();
-			} finally {
-				rs.close();
+			if (!rs.next()) {
+				throw new NotFoundException("No hay equipos con ese código");
 			}
+
+			e1 = getEquipoFromResultSet(rs);
+			e1.setListaJugadores(consultarJugadoresEquipo(codigo));
+
 		} catch (SQLException e) {
 			System.err.println("Error al acceder a BBDD");
 			throw new EquipoServiceException();
@@ -145,6 +164,7 @@ public class EquiposService {
 				stmt.execute();
 				stmt2.setString(1, codigo);
 				stmt2.execute();
+				System.out.println("Equipo eliminado!!");
 				conn.commit();
 			} catch (SQLException e) {
 				conn.rollback();
@@ -162,12 +182,12 @@ public class EquiposService {
 		// consultar todos los jugadores del equipo para ver cuantos hay
 		Integer cantidadJugadores = consultarJugadoresEquipo(e.getCodigo()).size();
 		try {
-			//Le introduzco al jugador el número siguiente al último del equipo
-			//(Si el último de la lista tiene el 14, este tendrá el 15)
+			// Le introduzco al jugador el número siguiente al último del equipo
+			// (Si el último de la lista tiene el 14, este tendrá el 15)
 			j.setNumero(e.getListaJugadores().get(consultarJugadoresEquipo(e.getCodigo()).size() - 1).getNumero() + 1);
-			//Le introduzco al usuario el codigo del equipo
+			// Le introduzco al usuario el codigo del equipo
 			j.setCodigoEquipo(e.getCodigo());
-			//Inserto al jugador en la tabla
+			// Inserto al jugador en la tabla
 			insertarJugador(j);
 
 		} catch (SQLException a) {
