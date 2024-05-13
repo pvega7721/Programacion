@@ -8,7 +8,7 @@ import practicaRepaso.modelo.Equipo;
 import practicaRepaso.modelo.Jugador;
 
 public class Menu {
-	
+
 	public static void subMenu3() {
 		System.out.println("-----------------------------------------------");
 		System.out.println("Elige una de estas opciones para el equipo: ");
@@ -19,6 +19,7 @@ public class Menu {
 		System.out.println("           (0) Volver al menú principal");
 		System.out.println("-----------------------------------------------");
 	}
+
 	public static void menuPrincipal() {
 		System.out.println("-----------------------------------------------");
 		System.out.println("Elige una de estas opciones: ");

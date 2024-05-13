@@ -2,10 +2,7 @@ package practicaRepaso.app;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import practicaRepaso.modelo.Equipo;
@@ -21,9 +18,7 @@ public class App {
 		Scanner sc = new Scanner(System.in);
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		Integer opcion = 0;
-		System.out.println("Pruebas");
-		System.out.println(service.consultarEquipoCompleto("rm"));
-		/*
+
 		do {
 			Menu.menuPrincipal();
 			opcion = sc.nextInt();
@@ -93,20 +88,21 @@ public class App {
 						service.borrarEquipoCompleto(codigo);
 						opcionMenu3 = 0;
 						break;
-					// Falta mirar
 					case 3:
+						sc.nextLine();
 						Jugador j3 = new Jugador();
 						System.out.println("Indica el nombre del jugador");
 						j3.setNombre(sc.nextLine());
-						sc.nextLine();
-						System.out.println("Introduce la fecha de nacimiento del juador (dd/MM/yyyy)");
+						System.out.println("Introduce la fecha de nacimiento del jugador (dd/MM/yyyy)");
 						String fechaNacimiento = sc.nextLine();
 						LocalDate fechaNacimiento3 = LocalDate.parse(fechaNacimiento, format);
 						j3.setFechaNacimiento(fechaNacimiento3);
 						service.añadirJugadorAEquipo(service.consultarEquipoCompleto(codigo), j3);
 						break;
 					case 4:
-						service.calcularEdadMediaPlantilla(service.consultarEquipoCompleto(codigo));
+						System.out.println(
+								service.calcularEdadMediaPlantilla(service.consultarEquipoCompleto(codigo)).toString());
+
 						break;
 
 					default:
@@ -120,7 +116,7 @@ public class App {
 				System.out.println("Opción no válida");
 			}
 		} while (opcion != 0);
-		*/
+
 		sc.close();
 	}
 

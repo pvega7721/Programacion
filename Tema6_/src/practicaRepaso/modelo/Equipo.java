@@ -63,7 +63,7 @@ public class Equipo {
 
 	@Override
 	public String toString() {
-		return "Equipo: " + codigo + "/" + nombre +  "]\n";
+		return "Equipo: " + codigo + "/" + nombre + "]\n";
 	}
 
 }

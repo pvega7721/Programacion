@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +47,6 @@ public class EquiposService {
 		try (Connection conn = openConn.getNetworkConnection(); Statement stmt = conn.createStatement()) {
 			ResultSet rs = stmt.executeQuery(sql);
 			try {
-				System.out.println(sql);
 				while (rs.next()) {
 					equipos.add(getEquipoFromResultSet(rs));
 				}
@@ -70,7 +69,6 @@ public class EquiposService {
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 			stmt.setString(1, codigo);
 			ResultSet rs = stmt.executeQuery();
-			System.out.println(sql);
 			while (rs.next()) {
 				jugadores.add(getJugadorFromResultSet(rs));
 			}
@@ -114,7 +112,6 @@ public class EquiposService {
 			stmt.setDate(4, Date.valueOf(j.getFechaNacimiento()));
 			stmt.execute();
 			System.out.println("Jugador insertado correctamente");
-
 		} catch (SQLException e) {
 			System.err.println("Error al acceder a la BBDD");
 			throw e;
@@ -182,13 +179,14 @@ public class EquiposService {
 		// consultar todos los jugadores del equipo para ver cuantos hay
 		Integer cantidadJugadores = consultarJugadoresEquipo(e.getCodigo()).size();
 		try {
-			// Le introduzco al jugador el número siguiente al último del equipo
-			// (Si el último de la lista tiene el 14, este tendrá el 15)
-			j.setNumero(e.getListaJugadores().get(consultarJugadoresEquipo(e.getCodigo()).size() - 1).getNumero() + 1);
 			// Le introduzco al usuario el codigo del equipo
 			j.setCodigoEquipo(e.getCodigo());
+			// Le introduzco al jugador el número siguiente al último del equipo
+			// (Si el último de la lista tiene el 14, este tendrá el 15)
+			j.setNumero(e.getListaJugadores().size());
 			// Inserto al jugador en la tabla
 			insertarJugador(j);
+			System.out.println("Jugador insertado");
 
 		} catch (SQLException a) {
 			throw new EquipoServiceException();
