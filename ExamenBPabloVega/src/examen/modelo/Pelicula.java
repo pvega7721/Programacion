@@ -15,18 +15,28 @@ public class Pelicula {
 	private BigDecimal presupustoInicial;
 	private BigDecimal recaudacion;
 	private List<Actor> reparto;
+	
+	public Pelicula(String titulo) {
+		super();
+		this.titulo = titulo;
+	}
+	
+	public Pelicula() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public BigDecimal getBeneficios() {
-		BigDecimal beneficio = recaudacion.subtract(presupustoInicial);
 		// si la recaudación es menor que el presupuesto, devolverá cero
 		if (recaudacion.compareTo(presupustoInicial) == -1) {
 			return BigDecimal.ZERO;
 		} else {
+			BigDecimal beneficio = recaudacion.subtract(presupustoInicial);
 			return beneficio;
 		}
 	}
 
 	public Integer getTiempoRodaje() {
+		//Hay que tener en cuenta también los meses
 		if (fechaInicioRodaje == null || fechaEstreno == null) {
 			return 0;
 		} else {
@@ -43,14 +53,6 @@ public class Pelicula {
 		this.recaudacion = recaudacion;
 	}
 
-	public Pelicula(String titulo) {
-		super();
-		this.titulo = titulo;
-	}
-
-	public Pelicula() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public String getTitulo() {
 		return titulo;
@@ -119,9 +121,9 @@ public class Pelicula {
 
 	@Override
 	public String toString() {
-		DecimalFormat formato = new DecimalFormat("#,###.00");
+		DecimalFormat formato = new DecimalFormat("#,##0.00 €");
 		return titulo + " (" + duracion + " min.) // Recaudación: " + formato.format(recaudacion) + " ("
-				+ formato.format(presupustoInicial) + "€)\n";
+				+ formato.format(presupustoInicial) + "\n";
 	}
 
 }

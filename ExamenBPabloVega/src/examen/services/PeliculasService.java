@@ -19,7 +19,7 @@ public class PeliculasService {
 	}
 
 	public List<Pelicula> consultarPeliculas(LocalDate fechaInicial, LocalDate fechaFinal)
-			throws SQLException, PeliculaErrorException {
+			throws PeliculaErrorException {
 		String sql = "select * from peliculas where estreno BETWEEN ? AND ?";
 		List<Pelicula> listaPeliculas = new ArrayList<>();
 		try (Connection conn = openConn.getNetworkConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -31,16 +31,18 @@ public class PeliculasService {
 				listaPeliculas.add(getPeliculaFromResultSet(rs));
 			}
 			if (listaPeliculas.isEmpty()) {
+				//Debe lanzar PeliculaNotFoundException
 				throw new PeliculaErrorException("No hay películas para estas fechas");
 			}
 			return listaPeliculas;
 		} catch (SQLException e) {
 			System.out.println("Error consultando películas");
-			return null;
+			throw new PeliculaErrorException("No hay películas para estas fechas");
 		}
 	}
 
 	private Pelicula getPeliculaFromResultSet(ResultSet rs) throws SQLException {
+		//btudo: este constructor no debe existir, el que tienes es con el titulo como parametro.
 		Pelicula p = new Pelicula();
 		p.setTitulo(rs.getString("TITULO_PELICULA"));
 		p.setDuracion(rs.getInt("DURACION"));

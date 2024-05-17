@@ -7,6 +7,11 @@ public abstract class Actor {
 	protected String nombreArtistico;
 	protected BigDecimal cache;
 
+	public Actor(String nombreArtistico, BigDecimal cache) {
+		this.nombreArtistico = nombreArtistico;
+		this.cache = BigDecimal.ZERO;
+	}
+
 	public String getNombreArtistico() {
 		return nombreArtistico;
 	}
@@ -23,11 +28,6 @@ public abstract class Actor {
 		this.cache = cache;
 	}
 
-	public Actor(String nombreArtistico, BigDecimal cache) {
-		this.nombreArtistico = nombreArtistico;
-		this.cache = BigDecimal.ZERO;
-	}
-	
 	public abstract BigDecimal getCoste();
 
 	@Override

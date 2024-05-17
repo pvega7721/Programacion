@@ -5,12 +5,13 @@ import java.math.RoundingMode;
 
 public class ActorPrincipal extends Actor {
 
+	public String peliculaDebut;
+
 	public ActorPrincipal(String nombreArtistico, BigDecimal cache) {
 		super(nombreArtistico, cache);
 		// TODO Auto-generated constructor stub
 	}
 
-	public String peliculaDebut;
 
 	public String getPeliculaDebut() {
 		return peliculaDebut;
